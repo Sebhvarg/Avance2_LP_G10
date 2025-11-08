@@ -5,7 +5,7 @@
 # ------------------------------------------------------------
 
 import ply.yacc as yacc
-from Avance1_LP.lexer import get_git_user, tokens
+from Avance1.lexer import get_git_user, tokens
 import datetime
 import os
 import subprocess
