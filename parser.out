@@ -1,0 +1,291 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    AND_IGUAL
+    AS
+    ASYNC
+    AWAIT
+    BIT_AND
+    BIT_NOT
+    BIT_OR
+    BIT_XOR
+    BREAK
+    COMA
+    COMENTARIO_BLOQUE
+    COMENTARIO_LINEA
+    CONST
+    CONTINUE
+    CORCHETE_DER
+    CORCHETE_IZQ
+    CRATE
+    DESPLAZAR_DER
+    DESPLAZAR_IZQ
+    DESP_DER_IGUAL
+    DESP_IZQ_IGUAL
+    DIFERENTE
+    DIV
+    DIV_IGUAL
+    DOSPUNTOS
+    DYN
+    ELSE
+    ENUM
+    FALSE
+    FLECHA
+    FN
+    FOR
+    IF
+    IGUAL
+    IMPL
+    IN
+    INPUT
+    INTERROGACION
+    LLAVE_DER
+    LLAVE_IZQ
+    LOOP
+    MAS_IGUAL
+    MATCH
+    MAYOR
+    MAYOR_IGUAL
+    MENOR
+    MENOR_IGUAL
+    MENOS_IGUAL
+    MOD
+    MODULO
+    MOD_IGUAL
+    MOVE
+    MULT
+    MUT
+    NOT
+    OR
+    OR_IGUAL
+    PAREN_DER
+    PAREN_IZQ
+    POR_IGUAL
+    POTENCIA
+    PRINT
+    PUB
+    PUNTO
+    REF
+    RESTA
+    RETURN
+    SELF
+    STATIC
+    STRUCT
+    SUMA
+    SUPER
+    TRAIT
+    TRUE
+    TYPE
+    UNSAFE
+    USE
+    WHERE
+    WHILE
+    XOR_IGUAL
+
+Grammar
+
+Rule 0     S' -> asignacion
+Rule 1     asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+Rule 2     valor -> NUMERO
+Rule 3     valor -> CADENA
+Rule 4     valor -> CARACTER
+Rule 5     valor -> BOOLEANO
+Rule 6     expresion -> valor
+
+Terminals, with rules where they appear
+
+AND                  : 
+AND_IGUAL            : 
+AS                   : 
+ASIGNACION           : 1
+ASYNC                : 
+AWAIT                : 
+BIT_AND              : 
+BIT_NOT              : 
+BIT_OR               : 
+BIT_XOR              : 
+BOOLEANO             : 5
+BREAK                : 
+CADENA               : 3
+CARACTER             : 4
+COMA                 : 
+COMENTARIO_BLOQUE    : 
+COMENTARIO_LINEA     : 
+CONST                : 
+CONTINUE             : 
+CORCHETE_DER         : 
+CORCHETE_IZQ         : 
+CRATE                : 
+DESPLAZAR_DER        : 
+DESPLAZAR_IZQ        : 
+DESP_DER_IGUAL       : 
+DESP_IZQ_IGUAL       : 
+DIFERENTE            : 
+DIV                  : 
+DIV_IGUAL            : 
+DOSPUNTOS            : 
+DYN                  : 
+ELSE                 : 
+ENUM                 : 
+FALSE                : 
+FLECHA               : 
+FN                   : 
+FOR                  : 
+IDENTIFICADOR        : 1
+IF                   : 
+IGUAL                : 
+IMPL                 : 
+IN                   : 
+INPUT                : 
+INTERROGACION        : 
+LET                  : 1
+LLAVE_DER            : 
+LLAVE_IZQ            : 
+LOOP                 : 
+MAS_IGUAL            : 
+MATCH                : 
+MAYOR                : 
+MAYOR_IGUAL          : 
+MENOR                : 
+MENOR_IGUAL          : 
+MENOS_IGUAL          : 
+MOD                  : 
+MODULO               : 
+MOD_IGUAL            : 
+MOVE                 : 
+MULT                 : 
+MUT                  : 
+NOT                  : 
+NUMERO               : 2
+OR                   : 
+OR_IGUAL             : 
+PAREN_DER            : 
+PAREN_IZQ            : 
+POR_IGUAL            : 
+POTENCIA             : 
+PRINT                : 
+PUB                  : 
+PUNTO                : 
+PUNTOCOMA            : 1
+REF                  : 
+RESTA                : 
+RETURN               : 
+SELF                 : 
+STATIC               : 
+STRUCT               : 
+SUMA                 : 
+SUPER                : 
+TRAIT                : 
+TRUE                 : 
+TYPE                 : 
+UNSAFE               : 
+USE                  : 
+WHERE                : 
+WHILE                : 
+XOR_IGUAL            : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 0
+expresion            : 1
+valor                : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . asignacion
+    (1) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+
+    LET             shift and go to state 2
+
+    asignacion                     shift and go to state 1
+
+state 1
+
+    (0) S' -> asignacion .
+
+
+
+state 2
+
+    (1) asignacion -> LET . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 3
+
+
+state 3
+
+    (1) asignacion -> LET IDENTIFICADOR . ASIGNACION expresion PUNTOCOMA
+
+    ASIGNACION      shift and go to state 4
+
+
+state 4
+
+    (1) asignacion -> LET IDENTIFICADOR ASIGNACION . expresion PUNTOCOMA
+    (6) expresion -> . valor
+    (2) valor -> . NUMERO
+    (3) valor -> . CADENA
+    (4) valor -> . CARACTER
+    (5) valor -> . BOOLEANO
+
+    NUMERO          shift and go to state 7
+    CADENA          shift and go to state 8
+    CARACTER        shift and go to state 9
+    BOOLEANO        shift and go to state 10
+
+    expresion                      shift and go to state 5
+    valor                          shift and go to state 6
+
+state 5
+
+    (1) asignacion -> LET IDENTIFICADOR ASIGNACION expresion . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 11
+
+
+state 6
+
+    (6) expresion -> valor .
+
+    PUNTOCOMA       reduce using rule 6 (expresion -> valor .)
+
+
+state 7
+
+    (2) valor -> NUMERO .
+
+    PUNTOCOMA       reduce using rule 2 (valor -> NUMERO .)
+
+
+state 8
+
+    (3) valor -> CADENA .
+
+    PUNTOCOMA       reduce using rule 3 (valor -> CADENA .)
+
+
+state 9
+
+    (4) valor -> CARACTER .
+
+    PUNTOCOMA       reduce using rule 4 (valor -> CARACTER .)
+
+
+state 10
+
+    (5) valor -> BOOLEANO .
+
+    PUNTOCOMA       reduce using rule 5 (valor -> BOOLEANO .)
+
+
+state 11
+
+    (1) asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .
+
+    $end            reduce using rule 1 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+
