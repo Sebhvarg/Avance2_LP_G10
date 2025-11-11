@@ -21,7 +21,6 @@ Unused terminals:
     DESP_DER_IGUAL
     DESP_IZQ_IGUAL
     DIV_IGUAL
-    DOSPUNTOS
     DYN
     ENUM
     FALSE
@@ -29,13 +28,11 @@ Unused terminals:
     FOR
     IMPL
     IN
-    INTERROGACION
     LOOP
     MAS_IGUAL
     MATCH
     MENOS_IGUAL
     MOD
-    MODULO
     MOD_IGUAL
     MOVE
     MUT
@@ -85,28 +82,31 @@ Rule 20    operador -> SUMA
 Rule 21    operador -> RESTA
 Rule 22    operador -> MULT
 Rule 23    operador -> DIV
-Rule 24    termino -> valor
-Rule 25    termino -> IDENTIFICADOR
-Rule 26    termino -> PAREN_IZQ expresion PAREN_DER
-Rule 27    expresion -> expresion AND expresion
-Rule 28    expresion -> expresion OR expresion
-Rule 29    expresion -> NOT expresion
-Rule 30    expresion -> expresion MENOR expresion
-Rule 31    expresion -> expresion MAYOR expresion
-Rule 32    expresion -> expresion MENOR_IGUAL expresion
-Rule 33    expresion -> expresion MAYOR_IGUAL expresion
-Rule 34    expresion -> expresion IGUAL expresion
-Rule 35    expresion -> expresion DIFERENTE expresion
-Rule 36    instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-Rule 37    instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-Rule 38    instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
-Rule 39    expresion -> CORCHETE_IZQ elementos CORCHETE_DER
-Rule 40    elementos -> expresion
-Rule 41    elementos -> elementos COMA expresion
+Rule 24    operador -> MODULO
+Rule 25    termino -> valor
+Rule 26    termino -> IDENTIFICADOR
+Rule 27    termino -> PAREN_IZQ expresion PAREN_DER
+Rule 28    expresion -> expresion AND expresion
+Rule 29    expresion -> expresion OR expresion
+Rule 30    expresion -> NOT expresion
+Rule 31    expresion -> expresion MENOR expresion
+Rule 32    expresion -> expresion MAYOR expresion
+Rule 33    expresion -> expresion MENOR_IGUAL expresion
+Rule 34    expresion -> expresion MAYOR_IGUAL expresion
+Rule 35    expresion -> expresion IGUAL expresion
+Rule 36    expresion -> expresion DIFERENTE expresion
+Rule 37    instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+Rule 38    expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion
+Rule 39    instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+Rule 40    instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+Rule 41    instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+Rule 42    expresion -> CORCHETE_IZQ elementos CORCHETE_DER
+Rule 43    elementos -> expresion
+Rule 44    elementos -> elementos COMA expresion
 
 Terminals, with rules where they appear
 
-AND                  : 27
+AND                  : 28
 AND_IGUAL            : 
 AS                   : 
 ASIGNACION           : 9 10
@@ -118,67 +118,67 @@ BIT_OR               :
 BIT_XOR              : 
 BOOLEANO             : 14
 BREAK                : 
-CADENA               : 12 36
+CADENA               : 12 39
 CARACTER             : 13
-COMA                 : 41
+COMA                 : 44
 COMENTARIO_BLOQUE    : 
 COMENTARIO_LINEA     : 
 CONST                : 
 CONTINUE             : 
-CORCHETE_DER         : 39
-CORCHETE_IZQ         : 39
+CORCHETE_DER         : 42
+CORCHETE_IZQ         : 42
 CRATE                : 
 DESPLAZAR_DER        : 
 DESPLAZAR_IZQ        : 
 DESP_DER_IGUAL       : 
 DESP_IZQ_IGUAL       : 
-DIFERENTE            : 35
+DIFERENTE            : 36
 DIV                  : 23
 DIV_IGUAL            : 
-DOSPUNTOS            : 
+DOSPUNTOS            : 38
 DYN                  : 
-ELSE                 : 38
+ELSE                 : 37 41
 ENUM                 : 
 FALSE                : 
 FLECHA               : 
 FN                   : 3
 FOR                  : 
-IDENTIFICADOR        : 3 9 10 16 25
-IF                   : 37 38
-IGUAL                : 34
+IDENTIFICADOR        : 3 9 10 16 26
+IF                   : 37 40 41
+IGUAL                : 35
 IMPL                 : 
 IN                   : 
-INPUT                : 36
-INTERROGACION        : 
+INPUT                : 39
+INTERROGACION        : 38
 LET                  : 9
-LLAVE_DER            : 3 37 38 38
-LLAVE_IZQ            : 3 37 38 38
+LLAVE_DER            : 3 37 40 41 41
+LLAVE_IZQ            : 3 37 40 41 41
 LOOP                 : 
 MAS_IGUAL            : 
 MATCH                : 
-MAYOR                : 31
-MAYOR_IGUAL          : 33
-MENOR                : 30
-MENOR_IGUAL          : 32
+MAYOR                : 32
+MAYOR_IGUAL          : 34
+MENOR                : 31
+MENOR_IGUAL          : 33
 MENOS_IGUAL          : 
 MOD                  : 
-MODULO               : 
+MODULO               : 24
 MOD_IGUAL            : 
 MOVE                 : 
 MULT                 : 22
 MUT                  : 
-NOT                  : 29
+NOT                  : 30
 NUMERO               : 11
-OR                   : 28
+OR                   : 29
 OR_IGUAL             : 
-PAREN_DER            : 3 17 18 26 36 37 38
-PAREN_IZQ            : 3 17 18 26 36 37 38
+PAREN_DER            : 3 17 18 27 37 39 40 41
+PAREN_IZQ            : 3 17 18 27 37 39 40 41
 POR_IGUAL            : 
 POTENCIA             : 
 PRINT                : 17
 PUB                  : 
 PUNTO                : 
-PUNTOCOMA            : 8 9 10 17 36
+PUNTOCOMA            : 8 9 10 17 39
 REF                  : 
 RESTA                : 21
 RETURN               : 
@@ -200,16 +200,16 @@ error                : 8
 Nonterminals, with rules where they appear
 
 asignacion           : 6
-elementos            : 39 41
-expresion            : 9 10 17 18 19 26 27 27 28 28 29 30 30 31 31 32 32 33 33 34 34 35 35 37 38 40 41
+elementos            : 42 44
+expresion            : 9 10 17 18 19 27 28 28 29 29 30 31 31 32 32 33 33 34 34 35 35 36 36 37 38 38 38 40 41 43 44
 funcion              : 1 2
 imprimir             : 7
-instruccion          : 4 5
-instrucciones        : 3 5 37 38 38
+instruccion          : 4 5 37
+instrucciones        : 3 5 37 40 41 41
 operador             : 19
 programa             : 2 0
 termino              : 19
-valor                : 15 24
+valor                : 15 25
 
 Parsing method: LALR
 
@@ -287,16 +287,17 @@ state 8
     (6) instruccion -> . asignacion
     (7) instruccion -> . imprimir
     (8) instruccion -> . error PUNTOCOMA
-    (36) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
     error           shift and go to state 14
-    INPUT           shift and go to state 15
-    IF              shift and go to state 16
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
     LET             shift and go to state 17
     IDENTIFICADOR   shift and go to state 9
     PRINT           shift and go to state 18
@@ -320,17 +321,18 @@ state 10
     (6) instruccion -> . asignacion
     (7) instruccion -> . imprimir
     (8) instruccion -> . error PUNTOCOMA
-    (36) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
     LLAVE_DER       shift and go to state 20
     error           shift and go to state 14
-    INPUT           shift and go to state 15
-    IF              shift and go to state 16
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
     LET             shift and go to state 17
     IDENTIFICADOR   shift and go to state 9
     PRINT           shift and go to state 18
@@ -345,8 +347,8 @@ state 11
 
     LLAVE_DER       reduce using rule 4 (instrucciones -> instruccion .)
     error           reduce using rule 4 (instrucciones -> instruccion .)
-    INPUT           reduce using rule 4 (instrucciones -> instruccion .)
     IF              reduce using rule 4 (instrucciones -> instruccion .)
+    INPUT           reduce using rule 4 (instrucciones -> instruccion .)
     LET             reduce using rule 4 (instrucciones -> instruccion .)
     IDENTIFICADOR   reduce using rule 4 (instrucciones -> instruccion .)
     PRINT           reduce using rule 4 (instrucciones -> instruccion .)
@@ -358,8 +360,8 @@ state 12
 
     LLAVE_DER       reduce using rule 6 (instruccion -> asignacion .)
     error           reduce using rule 6 (instruccion -> asignacion .)
-    INPUT           reduce using rule 6 (instruccion -> asignacion .)
     IF              reduce using rule 6 (instruccion -> asignacion .)
+    INPUT           reduce using rule 6 (instruccion -> asignacion .)
     LET             reduce using rule 6 (instruccion -> asignacion .)
     IDENTIFICADOR   reduce using rule 6 (instruccion -> asignacion .)
     PRINT           reduce using rule 6 (instruccion -> asignacion .)
@@ -371,8 +373,8 @@ state 13
 
     LLAVE_DER       reduce using rule 7 (instruccion -> imprimir .)
     error           reduce using rule 7 (instruccion -> imprimir .)
-    INPUT           reduce using rule 7 (instruccion -> imprimir .)
     IF              reduce using rule 7 (instruccion -> imprimir .)
+    INPUT           reduce using rule 7 (instruccion -> imprimir .)
     LET             reduce using rule 7 (instruccion -> imprimir .)
     IDENTIFICADOR   reduce using rule 7 (instruccion -> imprimir .)
     PRINT           reduce using rule 7 (instruccion -> imprimir .)
@@ -387,15 +389,16 @@ state 14
 
 state 15
 
-    (36) instruccion -> INPUT . PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (37) instruccion -> IF . PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (40) instruccion -> IF . PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> IF . PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
 
     PAREN_IZQ       shift and go to state 23
 
 
 state 16
 
-    (37) instruccion -> IF . PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> IF . PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (39) instruccion -> INPUT . PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
 
     PAREN_IZQ       shift and go to state 24
 
@@ -421,16 +424,17 @@ state 19
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -462,8 +466,8 @@ state 21
 
     LLAVE_DER       reduce using rule 5 (instrucciones -> instrucciones instruccion .)
     error           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
-    INPUT           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
     IF              reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    INPUT           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
     LET             reduce using rule 5 (instrucciones -> instrucciones instruccion .)
     IDENTIFICADOR   reduce using rule 5 (instrucciones -> instrucciones instruccion .)
     PRINT           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
@@ -475,8 +479,8 @@ state 22
 
     LLAVE_DER       reduce using rule 8 (instruccion -> error PUNTOCOMA .)
     error           reduce using rule 8 (instruccion -> error PUNTOCOMA .)
-    INPUT           reduce using rule 8 (instruccion -> error PUNTOCOMA .)
     IF              reduce using rule 8 (instruccion -> error PUNTOCOMA .)
+    INPUT           reduce using rule 8 (instruccion -> error PUNTOCOMA .)
     LET             reduce using rule 8 (instruccion -> error PUNTOCOMA .)
     IDENTIFICADOR   reduce using rule 8 (instruccion -> error PUNTOCOMA .)
     PRINT           reduce using rule 8 (instruccion -> error PUNTOCOMA .)
@@ -484,29 +488,24 @@ state 22
 
 state 23
 
-    (36) instruccion -> INPUT PAREN_IZQ . CADENA PAREN_DER PUNTOCOMA
-
-    CADENA          shift and go to state 37
-
-
-state 24
-
-    (37) instruccion -> IF PAREN_IZQ . expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> IF PAREN_IZQ . expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> IF PAREN_IZQ . expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (40) instruccion -> IF PAREN_IZQ . expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> IF PAREN_IZQ . expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -521,8 +520,15 @@ state 24
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    expresion                      shift and go to state 38
+    expresion                      shift and go to state 37
     valor                          shift and go to state 29
+
+state 24
+
+    (39) instruccion -> INPUT PAREN_IZQ . CADENA PAREN_DER PUNTOCOMA
+
+    CADENA          shift and go to state 38
+
 
 state 25
 
@@ -538,16 +544,17 @@ state 26
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -578,31 +585,36 @@ state 27
     MAYOR_IGUAL     reduce using rule 16 (expresion -> IDENTIFICADOR .)
     IGUAL           reduce using rule 16 (expresion -> IDENTIFICADOR .)
     DIFERENTE       reduce using rule 16 (expresion -> IDENTIFICADOR .)
+    INTERROGACION   reduce using rule 16 (expresion -> IDENTIFICADOR .)
     SUMA            reduce using rule 16 (expresion -> IDENTIFICADOR .)
     RESTA           reduce using rule 16 (expresion -> IDENTIFICADOR .)
     MULT            reduce using rule 16 (expresion -> IDENTIFICADOR .)
     DIV             reduce using rule 16 (expresion -> IDENTIFICADOR .)
+    MODULO          reduce using rule 16 (expresion -> IDENTIFICADOR .)
     PAREN_DER       reduce using rule 16 (expresion -> IDENTIFICADOR .)
     CORCHETE_DER    reduce using rule 16 (expresion -> IDENTIFICADOR .)
     COMA            reduce using rule 16 (expresion -> IDENTIFICADOR .)
+    DOSPUNTOS       reduce using rule 16 (expresion -> IDENTIFICADOR .)
 
 
 state 28
 
     (10) asignacion -> IDENTIFICADOR ASIGNACION expresion . PUNTOCOMA
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
     PUNTOCOMA       shift and go to state 41
     AND             shift and go to state 43
@@ -613,10 +625,12 @@ state 28
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
 
@@ -633,13 +647,16 @@ state 29
     MAYOR_IGUAL     reduce using rule 15 (expresion -> valor .)
     IGUAL           reduce using rule 15 (expresion -> valor .)
     DIFERENTE       reduce using rule 15 (expresion -> valor .)
+    INTERROGACION   reduce using rule 15 (expresion -> valor .)
     SUMA            reduce using rule 15 (expresion -> valor .)
     RESTA           reduce using rule 15 (expresion -> valor .)
     MULT            reduce using rule 15 (expresion -> valor .)
     DIV             reduce using rule 15 (expresion -> valor .)
+    MODULO          reduce using rule 15 (expresion -> valor .)
     PAREN_DER       reduce using rule 15 (expresion -> valor .)
     CORCHETE_DER    reduce using rule 15 (expresion -> valor .)
     COMA            reduce using rule 15 (expresion -> valor .)
+    DOSPUNTOS       reduce using rule 15 (expresion -> valor .)
 
 
 state 30
@@ -649,16 +666,17 @@ state 30
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -673,26 +691,27 @@ state 30
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    expresion                      shift and go to state 55
+    expresion                      shift and go to state 57
     valor                          shift and go to state 29
 
 state 31
 
-    (29) expresion -> NOT . expresion
+    (30) expresion -> NOT . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -707,28 +726,29 @@ state 31
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    expresion                      shift and go to state 56
+    expresion                      shift and go to state 58
     valor                          shift and go to state 29
 
 state 32
 
-    (39) expresion -> CORCHETE_IZQ . elementos CORCHETE_DER
-    (40) elementos -> . expresion
-    (41) elementos -> . elementos COMA expresion
+    (42) expresion -> CORCHETE_IZQ . elementos CORCHETE_DER
+    (43) elementos -> . expresion
+    (44) elementos -> . elementos COMA expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -743,8 +763,8 @@ state 32
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    elementos                      shift and go to state 57
-    expresion                      shift and go to state 58
+    elementos                      shift and go to state 59
+    expresion                      shift and go to state 60
     valor                          shift and go to state 29
 
 state 33
@@ -760,13 +780,16 @@ state 33
     MAYOR_IGUAL     reduce using rule 11 (valor -> NUMERO .)
     IGUAL           reduce using rule 11 (valor -> NUMERO .)
     DIFERENTE       reduce using rule 11 (valor -> NUMERO .)
+    INTERROGACION   reduce using rule 11 (valor -> NUMERO .)
     SUMA            reduce using rule 11 (valor -> NUMERO .)
     RESTA           reduce using rule 11 (valor -> NUMERO .)
     MULT            reduce using rule 11 (valor -> NUMERO .)
     DIV             reduce using rule 11 (valor -> NUMERO .)
+    MODULO          reduce using rule 11 (valor -> NUMERO .)
     PAREN_DER       reduce using rule 11 (valor -> NUMERO .)
     CORCHETE_DER    reduce using rule 11 (valor -> NUMERO .)
     COMA            reduce using rule 11 (valor -> NUMERO .)
+    DOSPUNTOS       reduce using rule 11 (valor -> NUMERO .)
 
 
 state 34
@@ -782,13 +805,16 @@ state 34
     MAYOR_IGUAL     reduce using rule 12 (valor -> CADENA .)
     IGUAL           reduce using rule 12 (valor -> CADENA .)
     DIFERENTE       reduce using rule 12 (valor -> CADENA .)
+    INTERROGACION   reduce using rule 12 (valor -> CADENA .)
     SUMA            reduce using rule 12 (valor -> CADENA .)
     RESTA           reduce using rule 12 (valor -> CADENA .)
     MULT            reduce using rule 12 (valor -> CADENA .)
     DIV             reduce using rule 12 (valor -> CADENA .)
+    MODULO          reduce using rule 12 (valor -> CADENA .)
     PAREN_DER       reduce using rule 12 (valor -> CADENA .)
     CORCHETE_DER    reduce using rule 12 (valor -> CADENA .)
     COMA            reduce using rule 12 (valor -> CADENA .)
+    DOSPUNTOS       reduce using rule 12 (valor -> CADENA .)
 
 
 state 35
@@ -804,13 +830,16 @@ state 35
     MAYOR_IGUAL     reduce using rule 13 (valor -> CARACTER .)
     IGUAL           reduce using rule 13 (valor -> CARACTER .)
     DIFERENTE       reduce using rule 13 (valor -> CARACTER .)
+    INTERROGACION   reduce using rule 13 (valor -> CARACTER .)
     SUMA            reduce using rule 13 (valor -> CARACTER .)
     RESTA           reduce using rule 13 (valor -> CARACTER .)
     MULT            reduce using rule 13 (valor -> CARACTER .)
     DIV             reduce using rule 13 (valor -> CARACTER .)
+    MODULO          reduce using rule 13 (valor -> CARACTER .)
     PAREN_DER       reduce using rule 13 (valor -> CARACTER .)
     CORCHETE_DER    reduce using rule 13 (valor -> CARACTER .)
     COMA            reduce using rule 13 (valor -> CARACTER .)
+    DOSPUNTOS       reduce using rule 13 (valor -> CARACTER .)
 
 
 state 36
@@ -826,41 +855,40 @@ state 36
     MAYOR_IGUAL     reduce using rule 14 (valor -> BOOLEANO .)
     IGUAL           reduce using rule 14 (valor -> BOOLEANO .)
     DIFERENTE       reduce using rule 14 (valor -> BOOLEANO .)
+    INTERROGACION   reduce using rule 14 (valor -> BOOLEANO .)
     SUMA            reduce using rule 14 (valor -> BOOLEANO .)
     RESTA           reduce using rule 14 (valor -> BOOLEANO .)
     MULT            reduce using rule 14 (valor -> BOOLEANO .)
     DIV             reduce using rule 14 (valor -> BOOLEANO .)
+    MODULO          reduce using rule 14 (valor -> BOOLEANO .)
     PAREN_DER       reduce using rule 14 (valor -> BOOLEANO .)
     CORCHETE_DER    reduce using rule 14 (valor -> BOOLEANO .)
     COMA            reduce using rule 14 (valor -> BOOLEANO .)
+    DOSPUNTOS       reduce using rule 14 (valor -> BOOLEANO .)
 
 
 state 37
 
-    (36) instruccion -> INPUT PAREN_IZQ CADENA . PAREN_DER PUNTOCOMA
-
-    PAREN_DER       shift and go to state 59
-
-
-state 38
-
-    (37) instruccion -> IF PAREN_IZQ expresion . PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> IF PAREN_IZQ expresion . PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> IF PAREN_IZQ expresion . PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (40) instruccion -> IF PAREN_IZQ expresion . PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> IF PAREN_IZQ expresion . PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
-    PAREN_DER       shift and go to state 60
+    PAREN_DER       shift and go to state 61
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -869,12 +897,21 @@ state 38
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
+
+state 38
+
+    (39) instruccion -> INPUT PAREN_IZQ CADENA . PAREN_DER PUNTOCOMA
+
+    PAREN_DER       shift and go to state 62
+
 
 state 39
 
@@ -883,16 +920,17 @@ state 39
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -907,27 +945,29 @@ state 39
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    expresion                      shift and go to state 61
+    expresion                      shift and go to state 63
     valor                          shift and go to state 29
 
 state 40
 
     (17) imprimir -> PRINT PAREN_IZQ expresion . PAREN_DER PUNTOCOMA
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
-    PAREN_DER       shift and go to state 62
+    PAREN_DER       shift and go to state 64
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -936,10 +976,12 @@ state 40
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
 
@@ -949,8 +991,8 @@ state 41
 
     LLAVE_DER       reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     error           reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
-    INPUT           reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     IF              reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+    INPUT           reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     LET             reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     IDENTIFICADOR   reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     PRINT           reduce using rule 10 (asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
@@ -959,109 +1001,42 @@ state 41
 state 42
 
     (19) expresion -> expresion operador . termino
-    (24) termino -> . valor
-    (25) termino -> . IDENTIFICADOR
-    (26) termino -> . PAREN_IZQ expresion PAREN_DER
+    (25) termino -> . valor
+    (26) termino -> . IDENTIFICADOR
+    (27) termino -> . PAREN_IZQ expresion PAREN_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
     (14) valor -> . BOOLEANO
 
-    IDENTIFICADOR   shift and go to state 65
-    PAREN_IZQ       shift and go to state 66
+    IDENTIFICADOR   shift and go to state 67
+    PAREN_IZQ       shift and go to state 68
     NUMERO          shift and go to state 33
     CADENA          shift and go to state 34
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    termino                        shift and go to state 63
-    valor                          shift and go to state 64
+    termino                        shift and go to state 65
+    valor                          shift and go to state 66
 
 state 43
 
-    (27) expresion -> expresion AND . expresion
+    (28) expresion -> expresion AND . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
-    (11) valor -> . NUMERO
-    (12) valor -> . CADENA
-    (13) valor -> . CARACTER
-    (14) valor -> . BOOLEANO
-
-    IDENTIFICADOR   shift and go to state 27
-    PAREN_IZQ       shift and go to state 30
-    NOT             shift and go to state 31
-    CORCHETE_IZQ    shift and go to state 32
-    NUMERO          shift and go to state 33
-    CADENA          shift and go to state 34
-    CARACTER        shift and go to state 35
-    BOOLEANO        shift and go to state 36
-
-    expresion                      shift and go to state 67
-    valor                          shift and go to state 29
-
-state 44
-
-    (28) expresion -> expresion OR . expresion
-    (15) expresion -> . valor
-    (16) expresion -> . IDENTIFICADOR
-    (18) expresion -> . PAREN_IZQ expresion PAREN_DER
-    (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
-    (11) valor -> . NUMERO
-    (12) valor -> . CADENA
-    (13) valor -> . CARACTER
-    (14) valor -> . BOOLEANO
-
-    IDENTIFICADOR   shift and go to state 27
-    PAREN_IZQ       shift and go to state 30
-    NOT             shift and go to state 31
-    CORCHETE_IZQ    shift and go to state 32
-    NUMERO          shift and go to state 33
-    CADENA          shift and go to state 34
-    CARACTER        shift and go to state 35
-    BOOLEANO        shift and go to state 36
-
-    expresion                      shift and go to state 68
-    valor                          shift and go to state 29
-
-state 45
-
-    (30) expresion -> expresion MENOR . expresion
-    (15) expresion -> . valor
-    (16) expresion -> . IDENTIFICADOR
-    (18) expresion -> . PAREN_IZQ expresion PAREN_DER
-    (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1079,23 +1054,24 @@ state 45
     expresion                      shift and go to state 69
     valor                          shift and go to state 29
 
-state 46
+state 44
 
-    (31) expresion -> expresion MAYOR . expresion
+    (29) expresion -> expresion OR . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1113,23 +1089,24 @@ state 46
     expresion                      shift and go to state 70
     valor                          shift and go to state 29
 
-state 47
+state 45
 
-    (32) expresion -> expresion MENOR_IGUAL . expresion
+    (31) expresion -> expresion MENOR . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1147,23 +1124,24 @@ state 47
     expresion                      shift and go to state 71
     valor                          shift and go to state 29
 
-state 48
+state 46
 
-    (33) expresion -> expresion MAYOR_IGUAL . expresion
+    (32) expresion -> expresion MAYOR . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1181,23 +1159,24 @@ state 48
     expresion                      shift and go to state 72
     valor                          shift and go to state 29
 
-state 49
+state 47
 
-    (34) expresion -> expresion IGUAL . expresion
+    (33) expresion -> expresion MENOR_IGUAL . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1215,23 +1194,24 @@ state 49
     expresion                      shift and go to state 73
     valor                          shift and go to state 29
 
-state 50
+state 48
 
-    (35) expresion -> expresion DIFERENTE . expresion
+    (34) expresion -> expresion MAYOR_IGUAL . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1249,7 +1229,112 @@ state 50
     expresion                      shift and go to state 74
     valor                          shift and go to state 29
 
+state 49
+
+    (35) expresion -> expresion IGUAL . expresion
+    (15) expresion -> . valor
+    (16) expresion -> . IDENTIFICADOR
+    (18) expresion -> . PAREN_IZQ expresion PAREN_DER
+    (19) expresion -> . expresion operador termino
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (11) valor -> . NUMERO
+    (12) valor -> . CADENA
+    (13) valor -> . CARACTER
+    (14) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 27
+    PAREN_IZQ       shift and go to state 30
+    NOT             shift and go to state 31
+    CORCHETE_IZQ    shift and go to state 32
+    NUMERO          shift and go to state 33
+    CADENA          shift and go to state 34
+    CARACTER        shift and go to state 35
+    BOOLEANO        shift and go to state 36
+
+    expresion                      shift and go to state 75
+    valor                          shift and go to state 29
+
+state 50
+
+    (36) expresion -> expresion DIFERENTE . expresion
+    (15) expresion -> . valor
+    (16) expresion -> . IDENTIFICADOR
+    (18) expresion -> . PAREN_IZQ expresion PAREN_DER
+    (19) expresion -> . expresion operador termino
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (11) valor -> . NUMERO
+    (12) valor -> . CADENA
+    (13) valor -> . CARACTER
+    (14) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 27
+    PAREN_IZQ       shift and go to state 30
+    NOT             shift and go to state 31
+    CORCHETE_IZQ    shift and go to state 32
+    NUMERO          shift and go to state 33
+    CADENA          shift and go to state 34
+    CARACTER        shift and go to state 35
+    BOOLEANO        shift and go to state 36
+
+    expresion                      shift and go to state 76
+    valor                          shift and go to state 29
+
 state 51
+
+    (38) expresion -> expresion INTERROGACION . expresion DOSPUNTOS expresion
+    (15) expresion -> . valor
+    (16) expresion -> . IDENTIFICADOR
+    (18) expresion -> . PAREN_IZQ expresion PAREN_DER
+    (19) expresion -> . expresion operador termino
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (11) valor -> . NUMERO
+    (12) valor -> . CADENA
+    (13) valor -> . CARACTER
+    (14) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 27
+    PAREN_IZQ       shift and go to state 30
+    NOT             shift and go to state 31
+    CORCHETE_IZQ    shift and go to state 32
+    NUMERO          shift and go to state 33
+    CADENA          shift and go to state 34
+    CARACTER        shift and go to state 35
+    BOOLEANO        shift and go to state 36
+
+    expresion                      shift and go to state 77
+    valor                          shift and go to state 29
+
+state 52
 
     (20) operador -> SUMA .
 
@@ -1261,7 +1346,7 @@ state 51
     BOOLEANO        reduce using rule 20 (operador -> SUMA .)
 
 
-state 52
+state 53
 
     (21) operador -> RESTA .
 
@@ -1273,7 +1358,7 @@ state 52
     BOOLEANO        reduce using rule 21 (operador -> RESTA .)
 
 
-state 53
+state 54
 
     (22) operador -> MULT .
 
@@ -1285,7 +1370,7 @@ state 53
     BOOLEANO        reduce using rule 22 (operador -> MULT .)
 
 
-state 54
+state 55
 
     (23) operador -> DIV .
 
@@ -1297,24 +1382,38 @@ state 54
     BOOLEANO        reduce using rule 23 (operador -> DIV .)
 
 
-state 55
+state 56
+
+    (24) operador -> MODULO .
+
+    IDENTIFICADOR   reduce using rule 24 (operador -> MODULO .)
+    PAREN_IZQ       reduce using rule 24 (operador -> MODULO .)
+    NUMERO          reduce using rule 24 (operador -> MODULO .)
+    CADENA          reduce using rule 24 (operador -> MODULO .)
+    CARACTER        reduce using rule 24 (operador -> MODULO .)
+    BOOLEANO        reduce using rule 24 (operador -> MODULO .)
+
+
+state 57
 
     (18) expresion -> PAREN_IZQ expresion . PAREN_DER
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
-    PAREN_DER       shift and go to state 75
+    PAREN_DER       shift and go to state 78
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1323,29 +1422,33 @@ state 55
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
 
-state 56
+state 58
 
-    (29) expresion -> NOT expresion .
+    (30) expresion -> NOT expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -1355,14 +1458,17 @@ state 56
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 29 (expresion -> NOT expresion .)
-    PAREN_DER       reduce using rule 29 (expresion -> NOT expresion .)
-    CORCHETE_DER    reduce using rule 29 (expresion -> NOT expresion .)
-    COMA            reduce using rule 29 (expresion -> NOT expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 30 (expresion -> NOT expresion .)
+    PAREN_DER       reduce using rule 30 (expresion -> NOT expresion .)
+    CORCHETE_DER    reduce using rule 30 (expresion -> NOT expresion .)
+    COMA            reduce using rule 30 (expresion -> NOT expresion .)
+    DOSPUNTOS       reduce using rule 30 (expresion -> NOT expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1371,102 +1477,60 @@ state 56
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! OR              [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! MENOR           [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! MAYOR           [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! IGUAL           [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! DIFERENTE       [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! SUMA            [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! RESTA           [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! MULT            [ reduce using rule 29 (expresion -> NOT expresion .) ]
-  ! DIV             [ reduce using rule 29 (expresion -> NOT expresion .) ]
-
-    operador                       shift and go to state 42
-
-state 57
-
-    (39) expresion -> CORCHETE_IZQ elementos . CORCHETE_DER
-    (41) elementos -> elementos . COMA expresion
-
-    CORCHETE_DER    shift and go to state 76
-    COMA            shift and go to state 77
-
-
-state 58
-
-    (40) elementos -> expresion .
-    (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
-    (20) operador -> . SUMA
-    (21) operador -> . RESTA
-    (22) operador -> . MULT
-    (23) operador -> . DIV
-
-    CORCHETE_DER    reduce using rule 40 (elementos -> expresion .)
-    COMA            reduce using rule 40 (elementos -> expresion .)
-    AND             shift and go to state 43
-    OR              shift and go to state 44
-    MENOR           shift and go to state 45
-    MAYOR           shift and go to state 46
-    MENOR_IGUAL     shift and go to state 47
-    MAYOR_IGUAL     shift and go to state 48
-    IGUAL           shift and go to state 49
-    DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+  ! AND             [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! OR              [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! MENOR           [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! MAYOR           [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! IGUAL           [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! DIFERENTE       [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! INTERROGACION   [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! SUMA            [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! RESTA           [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! MULT            [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! DIV             [ reduce using rule 30 (expresion -> NOT expresion .) ]
+  ! MODULO          [ reduce using rule 30 (expresion -> NOT expresion .) ]
 
     operador                       shift and go to state 42
 
 state 59
 
-    (36) instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER . PUNTOCOMA
+    (42) expresion -> CORCHETE_IZQ elementos . CORCHETE_DER
+    (44) elementos -> elementos . COMA expresion
 
-    PUNTOCOMA       shift and go to state 78
+    CORCHETE_DER    shift and go to state 79
+    COMA            shift and go to state 80
 
 
 state 60
 
-    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER . LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER . LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
-
-    LLAVE_IZQ       shift and go to state 79
-
-
-state 61
-
-    (9) asignacion -> LET IDENTIFICADOR ASIGNACION expresion . PUNTOCOMA
+    (43) elementos -> expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
-    PUNTOCOMA       shift and go to state 80
+    CORCHETE_DER    reduce using rule 43 (elementos -> expresion .)
+    COMA            reduce using rule 43 (elementos -> expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1475,21 +1539,76 @@ state 61
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
 
+state 61
+
+    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER . LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (40) instruccion -> IF PAREN_IZQ expresion PAREN_DER . LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER . LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 81
+
+
 state 62
 
-    (17) imprimir -> PRINT PAREN_IZQ expresion PAREN_DER . PUNTOCOMA
+    (39) instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER . PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 81
+    PUNTOCOMA       shift and go to state 82
 
 
 state 63
+
+    (9) asignacion -> LET IDENTIFICADOR ASIGNACION expresion . PUNTOCOMA
+    (19) expresion -> expresion . operador termino
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
+    (20) operador -> . SUMA
+    (21) operador -> . RESTA
+    (22) operador -> . MULT
+    (23) operador -> . DIV
+    (24) operador -> . MODULO
+
+    PUNTOCOMA       shift and go to state 83
+    AND             shift and go to state 43
+    OR              shift and go to state 44
+    MENOR           shift and go to state 45
+    MAYOR           shift and go to state 46
+    MENOR_IGUAL     shift and go to state 47
+    MAYOR_IGUAL     shift and go to state 48
+    IGUAL           shift and go to state 49
+    DIFERENTE       shift and go to state 50
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
+
+    operador                       shift and go to state 42
+
+state 64
+
+    (17) imprimir -> PRINT PAREN_IZQ expresion PAREN_DER . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 84
+
+
+state 65
 
     (19) expresion -> expresion operador termino .
 
@@ -1502,76 +1621,86 @@ state 63
     MAYOR_IGUAL     reduce using rule 19 (expresion -> expresion operador termino .)
     IGUAL           reduce using rule 19 (expresion -> expresion operador termino .)
     DIFERENTE       reduce using rule 19 (expresion -> expresion operador termino .)
+    INTERROGACION   reduce using rule 19 (expresion -> expresion operador termino .)
     SUMA            reduce using rule 19 (expresion -> expresion operador termino .)
     RESTA           reduce using rule 19 (expresion -> expresion operador termino .)
     MULT            reduce using rule 19 (expresion -> expresion operador termino .)
     DIV             reduce using rule 19 (expresion -> expresion operador termino .)
+    MODULO          reduce using rule 19 (expresion -> expresion operador termino .)
     PAREN_DER       reduce using rule 19 (expresion -> expresion operador termino .)
     CORCHETE_DER    reduce using rule 19 (expresion -> expresion operador termino .)
     COMA            reduce using rule 19 (expresion -> expresion operador termino .)
-
-
-state 64
-
-    (24) termino -> valor .
-
-    PUNTOCOMA       reduce using rule 24 (termino -> valor .)
-    AND             reduce using rule 24 (termino -> valor .)
-    OR              reduce using rule 24 (termino -> valor .)
-    MENOR           reduce using rule 24 (termino -> valor .)
-    MAYOR           reduce using rule 24 (termino -> valor .)
-    MENOR_IGUAL     reduce using rule 24 (termino -> valor .)
-    MAYOR_IGUAL     reduce using rule 24 (termino -> valor .)
-    IGUAL           reduce using rule 24 (termino -> valor .)
-    DIFERENTE       reduce using rule 24 (termino -> valor .)
-    SUMA            reduce using rule 24 (termino -> valor .)
-    RESTA           reduce using rule 24 (termino -> valor .)
-    MULT            reduce using rule 24 (termino -> valor .)
-    DIV             reduce using rule 24 (termino -> valor .)
-    PAREN_DER       reduce using rule 24 (termino -> valor .)
-    CORCHETE_DER    reduce using rule 24 (termino -> valor .)
-    COMA            reduce using rule 24 (termino -> valor .)
-
-
-state 65
-
-    (25) termino -> IDENTIFICADOR .
-
-    PUNTOCOMA       reduce using rule 25 (termino -> IDENTIFICADOR .)
-    AND             reduce using rule 25 (termino -> IDENTIFICADOR .)
-    OR              reduce using rule 25 (termino -> IDENTIFICADOR .)
-    MENOR           reduce using rule 25 (termino -> IDENTIFICADOR .)
-    MAYOR           reduce using rule 25 (termino -> IDENTIFICADOR .)
-    MENOR_IGUAL     reduce using rule 25 (termino -> IDENTIFICADOR .)
-    MAYOR_IGUAL     reduce using rule 25 (termino -> IDENTIFICADOR .)
-    IGUAL           reduce using rule 25 (termino -> IDENTIFICADOR .)
-    DIFERENTE       reduce using rule 25 (termino -> IDENTIFICADOR .)
-    SUMA            reduce using rule 25 (termino -> IDENTIFICADOR .)
-    RESTA           reduce using rule 25 (termino -> IDENTIFICADOR .)
-    MULT            reduce using rule 25 (termino -> IDENTIFICADOR .)
-    DIV             reduce using rule 25 (termino -> IDENTIFICADOR .)
-    PAREN_DER       reduce using rule 25 (termino -> IDENTIFICADOR .)
-    CORCHETE_DER    reduce using rule 25 (termino -> IDENTIFICADOR .)
-    COMA            reduce using rule 25 (termino -> IDENTIFICADOR .)
+    DOSPUNTOS       reduce using rule 19 (expresion -> expresion operador termino .)
 
 
 state 66
 
-    (26) termino -> PAREN_IZQ . expresion PAREN_DER
+    (25) termino -> valor .
+
+    PUNTOCOMA       reduce using rule 25 (termino -> valor .)
+    AND             reduce using rule 25 (termino -> valor .)
+    OR              reduce using rule 25 (termino -> valor .)
+    MENOR           reduce using rule 25 (termino -> valor .)
+    MAYOR           reduce using rule 25 (termino -> valor .)
+    MENOR_IGUAL     reduce using rule 25 (termino -> valor .)
+    MAYOR_IGUAL     reduce using rule 25 (termino -> valor .)
+    IGUAL           reduce using rule 25 (termino -> valor .)
+    DIFERENTE       reduce using rule 25 (termino -> valor .)
+    INTERROGACION   reduce using rule 25 (termino -> valor .)
+    SUMA            reduce using rule 25 (termino -> valor .)
+    RESTA           reduce using rule 25 (termino -> valor .)
+    MULT            reduce using rule 25 (termino -> valor .)
+    DIV             reduce using rule 25 (termino -> valor .)
+    MODULO          reduce using rule 25 (termino -> valor .)
+    PAREN_DER       reduce using rule 25 (termino -> valor .)
+    CORCHETE_DER    reduce using rule 25 (termino -> valor .)
+    COMA            reduce using rule 25 (termino -> valor .)
+    DOSPUNTOS       reduce using rule 25 (termino -> valor .)
+
+
+state 67
+
+    (26) termino -> IDENTIFICADOR .
+
+    PUNTOCOMA       reduce using rule 26 (termino -> IDENTIFICADOR .)
+    AND             reduce using rule 26 (termino -> IDENTIFICADOR .)
+    OR              reduce using rule 26 (termino -> IDENTIFICADOR .)
+    MENOR           reduce using rule 26 (termino -> IDENTIFICADOR .)
+    MAYOR           reduce using rule 26 (termino -> IDENTIFICADOR .)
+    MENOR_IGUAL     reduce using rule 26 (termino -> IDENTIFICADOR .)
+    MAYOR_IGUAL     reduce using rule 26 (termino -> IDENTIFICADOR .)
+    IGUAL           reduce using rule 26 (termino -> IDENTIFICADOR .)
+    DIFERENTE       reduce using rule 26 (termino -> IDENTIFICADOR .)
+    INTERROGACION   reduce using rule 26 (termino -> IDENTIFICADOR .)
+    SUMA            reduce using rule 26 (termino -> IDENTIFICADOR .)
+    RESTA           reduce using rule 26 (termino -> IDENTIFICADOR .)
+    MULT            reduce using rule 26 (termino -> IDENTIFICADOR .)
+    DIV             reduce using rule 26 (termino -> IDENTIFICADOR .)
+    MODULO          reduce using rule 26 (termino -> IDENTIFICADOR .)
+    PAREN_DER       reduce using rule 26 (termino -> IDENTIFICADOR .)
+    CORCHETE_DER    reduce using rule 26 (termino -> IDENTIFICADOR .)
+    COMA            reduce using rule 26 (termino -> IDENTIFICADOR .)
+    DOSPUNTOS       reduce using rule 26 (termino -> IDENTIFICADOR .)
+
+
+state 68
+
+    (27) termino -> PAREN_IZQ . expresion PAREN_DER
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -1586,147 +1715,27 @@ state 66
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    expresion                      shift and go to state 82
+    expresion                      shift and go to state 85
     valor                          shift and go to state 29
-
-state 67
-
-    (27) expresion -> expresion AND expresion .
-    (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
-    (20) operador -> . SUMA
-    (21) operador -> . RESTA
-    (22) operador -> . MULT
-    (23) operador -> . DIV
-
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for MENOR resolved as shift
-  ! shift/reduce conflict for MAYOR resolved as shift
-  ! shift/reduce conflict for MENOR_IGUAL resolved as shift
-  ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
-  ! shift/reduce conflict for IGUAL resolved as shift
-  ! shift/reduce conflict for DIFERENTE resolved as shift
-  ! shift/reduce conflict for SUMA resolved as shift
-  ! shift/reduce conflict for RESTA resolved as shift
-  ! shift/reduce conflict for MULT resolved as shift
-  ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 27 (expresion -> expresion AND expresion .)
-    PAREN_DER       reduce using rule 27 (expresion -> expresion AND expresion .)
-    CORCHETE_DER    reduce using rule 27 (expresion -> expresion AND expresion .)
-    COMA            reduce using rule 27 (expresion -> expresion AND expresion .)
-    AND             shift and go to state 43
-    OR              shift and go to state 44
-    MENOR           shift and go to state 45
-    MAYOR           shift and go to state 46
-    MENOR_IGUAL     shift and go to state 47
-    MAYOR_IGUAL     shift and go to state 48
-    IGUAL           shift and go to state 49
-    DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
-
-  ! AND             [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! OR              [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! MENOR           [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! MAYOR           [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! IGUAL           [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! DIFERENTE       [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! SUMA            [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! RESTA           [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! MULT            [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-  ! DIV             [ reduce using rule 27 (expresion -> expresion AND expresion .) ]
-
-    operador                       shift and go to state 42
-
-state 68
-
-    (28) expresion -> expresion OR expresion .
-    (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
-    (20) operador -> . SUMA
-    (21) operador -> . RESTA
-    (22) operador -> . MULT
-    (23) operador -> . DIV
-
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for MENOR resolved as shift
-  ! shift/reduce conflict for MAYOR resolved as shift
-  ! shift/reduce conflict for MENOR_IGUAL resolved as shift
-  ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
-  ! shift/reduce conflict for IGUAL resolved as shift
-  ! shift/reduce conflict for DIFERENTE resolved as shift
-  ! shift/reduce conflict for SUMA resolved as shift
-  ! shift/reduce conflict for RESTA resolved as shift
-  ! shift/reduce conflict for MULT resolved as shift
-  ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 28 (expresion -> expresion OR expresion .)
-    PAREN_DER       reduce using rule 28 (expresion -> expresion OR expresion .)
-    CORCHETE_DER    reduce using rule 28 (expresion -> expresion OR expresion .)
-    COMA            reduce using rule 28 (expresion -> expresion OR expresion .)
-    AND             shift and go to state 43
-    OR              shift and go to state 44
-    MENOR           shift and go to state 45
-    MAYOR           shift and go to state 46
-    MENOR_IGUAL     shift and go to state 47
-    MAYOR_IGUAL     shift and go to state 48
-    IGUAL           shift and go to state 49
-    DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
-
-  ! AND             [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! OR              [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! MENOR           [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! MAYOR           [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! IGUAL           [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! DIFERENTE       [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! SUMA            [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! RESTA           [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! MULT            [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-  ! DIV             [ reduce using rule 28 (expresion -> expresion OR expresion .) ]
-
-    operador                       shift and go to state 42
 
 state 69
 
-    (30) expresion -> expresion MENOR expresion .
+    (28) expresion -> expresion AND expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -1736,14 +1745,17 @@ state 69
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 30 (expresion -> expresion MENOR expresion .)
-    PAREN_DER       reduce using rule 30 (expresion -> expresion MENOR expresion .)
-    CORCHETE_DER    reduce using rule 30 (expresion -> expresion MENOR expresion .)
-    COMA            reduce using rule 30 (expresion -> expresion MENOR expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 28 (expresion -> expresion AND expresion .)
+    PAREN_DER       reduce using rule 28 (expresion -> expresion AND expresion .)
+    CORCHETE_DER    reduce using rule 28 (expresion -> expresion AND expresion .)
+    COMA            reduce using rule 28 (expresion -> expresion AND expresion .)
+    DOSPUNTOS       reduce using rule 28 (expresion -> expresion AND expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1752,42 +1764,48 @@ state 69
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! OR              [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! MENOR           [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! MAYOR           [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! IGUAL           [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! DIFERENTE       [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! SUMA            [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! RESTA           [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! MULT            [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
-  ! DIV             [ reduce using rule 30 (expresion -> expresion MENOR expresion .) ]
+  ! AND             [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! OR              [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! MENOR           [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! MAYOR           [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! IGUAL           [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! DIFERENTE       [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! INTERROGACION   [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! SUMA            [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! RESTA           [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! MULT            [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! DIV             [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
+  ! MODULO          [ reduce using rule 28 (expresion -> expresion AND expresion .) ]
 
     operador                       shift and go to state 42
 
 state 70
 
-    (31) expresion -> expresion MAYOR expresion .
+    (29) expresion -> expresion OR expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -1797,14 +1815,17 @@ state 70
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 31 (expresion -> expresion MAYOR expresion .)
-    PAREN_DER       reduce using rule 31 (expresion -> expresion MAYOR expresion .)
-    CORCHETE_DER    reduce using rule 31 (expresion -> expresion MAYOR expresion .)
-    COMA            reduce using rule 31 (expresion -> expresion MAYOR expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 29 (expresion -> expresion OR expresion .)
+    PAREN_DER       reduce using rule 29 (expresion -> expresion OR expresion .)
+    CORCHETE_DER    reduce using rule 29 (expresion -> expresion OR expresion .)
+    COMA            reduce using rule 29 (expresion -> expresion OR expresion .)
+    DOSPUNTOS       reduce using rule 29 (expresion -> expresion OR expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1813,42 +1834,48 @@ state 70
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! OR              [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! MENOR           [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! MAYOR           [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! IGUAL           [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! DIFERENTE       [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! SUMA            [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! RESTA           [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! MULT            [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
-  ! DIV             [ reduce using rule 31 (expresion -> expresion MAYOR expresion .) ]
+  ! AND             [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! OR              [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! MENOR           [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! MAYOR           [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! IGUAL           [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! DIFERENTE       [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! INTERROGACION   [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! SUMA            [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! RESTA           [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! MULT            [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! DIV             [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
+  ! MODULO          [ reduce using rule 29 (expresion -> expresion OR expresion .) ]
 
     operador                       shift and go to state 42
 
 state 71
 
-    (32) expresion -> expresion MENOR_IGUAL expresion .
+    (31) expresion -> expresion MENOR expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -1858,14 +1885,17 @@ state 71
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .)
-    PAREN_DER       reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .)
-    CORCHETE_DER    reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .)
-    COMA            reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 31 (expresion -> expresion MENOR expresion .)
+    PAREN_DER       reduce using rule 31 (expresion -> expresion MENOR expresion .)
+    CORCHETE_DER    reduce using rule 31 (expresion -> expresion MENOR expresion .)
+    COMA            reduce using rule 31 (expresion -> expresion MENOR expresion .)
+    DOSPUNTOS       reduce using rule 31 (expresion -> expresion MENOR expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1874,42 +1904,48 @@ state 71
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! OR              [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! MENOR           [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! MAYOR           [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! IGUAL           [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! DIFERENTE       [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! SUMA            [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! RESTA           [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! MULT            [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
-  ! DIV             [ reduce using rule 32 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! AND             [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! OR              [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! MENOR           [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! MAYOR           [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! IGUAL           [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! DIFERENTE       [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! INTERROGACION   [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! SUMA            [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! RESTA           [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! MULT            [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! DIV             [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
+  ! MODULO          [ reduce using rule 31 (expresion -> expresion MENOR expresion .) ]
 
     operador                       shift and go to state 42
 
 state 72
 
-    (33) expresion -> expresion MAYOR_IGUAL expresion .
+    (32) expresion -> expresion MAYOR expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -1919,14 +1955,17 @@ state 72
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .)
-    PAREN_DER       reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .)
-    CORCHETE_DER    reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .)
-    COMA            reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 32 (expresion -> expresion MAYOR expresion .)
+    PAREN_DER       reduce using rule 32 (expresion -> expresion MAYOR expresion .)
+    CORCHETE_DER    reduce using rule 32 (expresion -> expresion MAYOR expresion .)
+    COMA            reduce using rule 32 (expresion -> expresion MAYOR expresion .)
+    DOSPUNTOS       reduce using rule 32 (expresion -> expresion MAYOR expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1935,42 +1974,48 @@ state 72
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! OR              [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! MENOR           [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! MAYOR           [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! IGUAL           [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! DIFERENTE       [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! SUMA            [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! RESTA           [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! MULT            [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
-  ! DIV             [ reduce using rule 33 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! AND             [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! OR              [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! MENOR           [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! MAYOR           [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! IGUAL           [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! DIFERENTE       [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! INTERROGACION   [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! SUMA            [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! RESTA           [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! MULT            [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! DIV             [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
+  ! MODULO          [ reduce using rule 32 (expresion -> expresion MAYOR expresion .) ]
 
     operador                       shift and go to state 42
 
 state 73
 
-    (34) expresion -> expresion IGUAL expresion .
+    (33) expresion -> expresion MENOR_IGUAL expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -1980,14 +2025,17 @@ state 73
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 34 (expresion -> expresion IGUAL expresion .)
-    PAREN_DER       reduce using rule 34 (expresion -> expresion IGUAL expresion .)
-    CORCHETE_DER    reduce using rule 34 (expresion -> expresion IGUAL expresion .)
-    COMA            reduce using rule 34 (expresion -> expresion IGUAL expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .)
+    PAREN_DER       reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .)
+    CORCHETE_DER    reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .)
+    COMA            reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .)
+    DOSPUNTOS       reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -1996,42 +2044,48 @@ state 73
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! OR              [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! MENOR           [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! MAYOR           [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! IGUAL           [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! DIFERENTE       [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! SUMA            [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! RESTA           [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! MULT            [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
-  ! DIV             [ reduce using rule 34 (expresion -> expresion IGUAL expresion .) ]
+  ! AND             [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! OR              [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! MENOR           [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! MAYOR           [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! IGUAL           [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! DIFERENTE       [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! INTERROGACION   [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! SUMA            [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! MULT            [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! DIV             [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
+  ! MODULO          [ reduce using rule 33 (expresion -> expresion MENOR_IGUAL expresion .) ]
 
     operador                       shift and go to state 42
 
 state 74
 
-    (35) expresion -> expresion DIFERENTE expresion .
+    (34) expresion -> expresion MAYOR_IGUAL expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
@@ -2041,14 +2095,17 @@ state 74
   ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
   ! shift/reduce conflict for MULT resolved as shift
   ! shift/reduce conflict for DIV resolved as shift
-    PUNTOCOMA       reduce using rule 35 (expresion -> expresion DIFERENTE expresion .)
-    PAREN_DER       reduce using rule 35 (expresion -> expresion DIFERENTE expresion .)
-    CORCHETE_DER    reduce using rule 35 (expresion -> expresion DIFERENTE expresion .)
-    COMA            reduce using rule 35 (expresion -> expresion DIFERENTE expresion .)
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .)
+    PAREN_DER       reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .)
+    CORCHETE_DER    reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .)
+    COMA            reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .)
+    DOSPUNTOS       reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -2057,27 +2114,208 @@ state 74
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
-  ! AND             [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! OR              [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! MENOR           [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! MAYOR           [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! MENOR_IGUAL     [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! MAYOR_IGUAL     [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! IGUAL           [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! DIFERENTE       [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! SUMA            [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! RESTA           [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! MULT            [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
-  ! DIV             [ reduce using rule 35 (expresion -> expresion DIFERENTE expresion .) ]
+  ! AND             [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! OR              [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! MENOR           [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! MAYOR           [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! IGUAL           [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! DIFERENTE       [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! INTERROGACION   [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! SUMA            [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! MULT            [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! DIV             [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
+  ! MODULO          [ reduce using rule 34 (expresion -> expresion MAYOR_IGUAL expresion .) ]
 
     operador                       shift and go to state 42
 
 state 75
+
+    (35) expresion -> expresion IGUAL expresion .
+    (19) expresion -> expresion . operador termino
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
+    (20) operador -> . SUMA
+    (21) operador -> . RESTA
+    (22) operador -> . MULT
+    (23) operador -> . DIV
+    (24) operador -> . MODULO
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MENOR_IGUAL resolved as shift
+  ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 35 (expresion -> expresion IGUAL expresion .)
+    PAREN_DER       reduce using rule 35 (expresion -> expresion IGUAL expresion .)
+    CORCHETE_DER    reduce using rule 35 (expresion -> expresion IGUAL expresion .)
+    COMA            reduce using rule 35 (expresion -> expresion IGUAL expresion .)
+    DOSPUNTOS       reduce using rule 35 (expresion -> expresion IGUAL expresion .)
+    AND             shift and go to state 43
+    OR              shift and go to state 44
+    MENOR           shift and go to state 45
+    MAYOR           shift and go to state 46
+    MENOR_IGUAL     shift and go to state 47
+    MAYOR_IGUAL     shift and go to state 48
+    IGUAL           shift and go to state 49
+    DIFERENTE       shift and go to state 50
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
+
+  ! AND             [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! OR              [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! MENOR           [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! MAYOR           [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! IGUAL           [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! DIFERENTE       [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! INTERROGACION   [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! SUMA            [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! MULT            [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! DIV             [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+  ! MODULO          [ reduce using rule 35 (expresion -> expresion IGUAL expresion .) ]
+
+    operador                       shift and go to state 42
+
+state 76
+
+    (36) expresion -> expresion DIFERENTE expresion .
+    (19) expresion -> expresion . operador termino
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
+    (20) operador -> . SUMA
+    (21) operador -> . RESTA
+    (22) operador -> . MULT
+    (23) operador -> . DIV
+    (24) operador -> . MODULO
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MENOR_IGUAL resolved as shift
+  ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 36 (expresion -> expresion DIFERENTE expresion .)
+    PAREN_DER       reduce using rule 36 (expresion -> expresion DIFERENTE expresion .)
+    CORCHETE_DER    reduce using rule 36 (expresion -> expresion DIFERENTE expresion .)
+    COMA            reduce using rule 36 (expresion -> expresion DIFERENTE expresion .)
+    DOSPUNTOS       reduce using rule 36 (expresion -> expresion DIFERENTE expresion .)
+    AND             shift and go to state 43
+    OR              shift and go to state 44
+    MENOR           shift and go to state 45
+    MAYOR           shift and go to state 46
+    MENOR_IGUAL     shift and go to state 47
+    MAYOR_IGUAL     shift and go to state 48
+    IGUAL           shift and go to state 49
+    DIFERENTE       shift and go to state 50
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
+
+  ! AND             [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! OR              [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MENOR           [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MAYOR           [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! IGUAL           [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! DIFERENTE       [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! INTERROGACION   [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! SUMA            [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! RESTA           [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MULT            [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! DIV             [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MODULO          [ reduce using rule 36 (expresion -> expresion DIFERENTE expresion .) ]
+
+    operador                       shift and go to state 42
+
+state 77
+
+    (38) expresion -> expresion INTERROGACION expresion . DOSPUNTOS expresion
+    (19) expresion -> expresion . operador termino
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
+    (20) operador -> . SUMA
+    (21) operador -> . RESTA
+    (22) operador -> . MULT
+    (23) operador -> . DIV
+    (24) operador -> . MODULO
+
+    DOSPUNTOS       shift and go to state 86
+    AND             shift and go to state 43
+    OR              shift and go to state 44
+    MENOR           shift and go to state 45
+    MAYOR           shift and go to state 46
+    MENOR_IGUAL     shift and go to state 47
+    MAYOR_IGUAL     shift and go to state 48
+    IGUAL           shift and go to state 49
+    DIFERENTE       shift and go to state 50
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
+
+    operador                       shift and go to state 42
+
+state 78
 
     (18) expresion -> PAREN_IZQ expresion PAREN_DER .
 
@@ -2090,54 +2328,61 @@ state 75
     MAYOR_IGUAL     reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     IGUAL           reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     DIFERENTE       reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
+    INTERROGACION   reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     SUMA            reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     RESTA           reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     MULT            reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     DIV             reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
+    MODULO          reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     PAREN_DER       reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     CORCHETE_DER    reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
     COMA            reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
+    DOSPUNTOS       reduce using rule 18 (expresion -> PAREN_IZQ expresion PAREN_DER .)
 
 
-state 76
+state 79
 
-    (39) expresion -> CORCHETE_IZQ elementos CORCHETE_DER .
+    (42) expresion -> CORCHETE_IZQ elementos CORCHETE_DER .
 
-    PUNTOCOMA       reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    AND             reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    OR              reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    MENOR           reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    MAYOR           reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    MENOR_IGUAL     reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    MAYOR_IGUAL     reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    IGUAL           reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    DIFERENTE       reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    SUMA            reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    RESTA           reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    MULT            reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    DIV             reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    PAREN_DER       reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    CORCHETE_DER    reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
-    COMA            reduce using rule 39 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    PUNTOCOMA       reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    AND             reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    OR              reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    MENOR           reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    MAYOR           reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    MENOR_IGUAL     reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    MAYOR_IGUAL     reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    IGUAL           reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    DIFERENTE       reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    INTERROGACION   reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    SUMA            reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    RESTA           reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    MULT            reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    DIV             reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    MODULO          reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    PAREN_DER       reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    CORCHETE_DER    reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    COMA            reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
+    DOSPUNTOS       reduce using rule 42 (expresion -> CORCHETE_IZQ elementos CORCHETE_DER .)
 
 
-state 77
+state 80
 
-    (41) elementos -> elementos COMA . expresion
+    (44) elementos -> elementos COMA . expresion
     (15) expresion -> . valor
     (16) expresion -> . IDENTIFICADOR
     (18) expresion -> . PAREN_IZQ expresion PAREN_DER
     (19) expresion -> . expresion operador termino
-    (27) expresion -> . expresion AND expresion
-    (28) expresion -> . expresion OR expresion
-    (29) expresion -> . NOT expresion
-    (30) expresion -> . expresion MENOR expresion
-    (31) expresion -> . expresion MAYOR expresion
-    (32) expresion -> . expresion MENOR_IGUAL expresion
-    (33) expresion -> . expresion MAYOR_IGUAL expresion
-    (34) expresion -> . expresion IGUAL expresion
-    (35) expresion -> . expresion DIFERENTE expresion
-    (39) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
     (11) valor -> . NUMERO
     (12) valor -> . CADENA
     (13) valor -> . CARACTER
@@ -2152,94 +2397,98 @@ state 77
     CARACTER        shift and go to state 35
     BOOLEANO        shift and go to state 36
 
-    expresion                      shift and go to state 83
+    expresion                      shift and go to state 87
     valor                          shift and go to state 29
 
-state 78
+state 81
 
-    (36) instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .
-
-    LLAVE_DER       reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-    error           reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-    INPUT           reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-    IF              reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-    LET             reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-    IDENTIFICADOR   reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-    PRINT           reduce using rule 36 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
-
-
-state 79
-
-    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ . instrucciones LLAVE_DER
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ . instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ . instrucciones LLAVE_DER ELSE instruccion
+    (40) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ . instrucciones LLAVE_DER
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ . instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (4) instrucciones -> . instruccion
     (5) instrucciones -> . instrucciones instruccion
     (6) instruccion -> . asignacion
     (7) instruccion -> . imprimir
     (8) instruccion -> . error PUNTOCOMA
-    (36) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
     error           shift and go to state 14
-    INPUT           shift and go to state 15
-    IF              shift and go to state 16
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
     LET             shift and go to state 17
     IDENTIFICADOR   shift and go to state 9
     PRINT           shift and go to state 18
 
-    instrucciones                  shift and go to state 84
+    instrucciones                  shift and go to state 88
     instruccion                    shift and go to state 11
     asignacion                     shift and go to state 12
     imprimir                       shift and go to state 13
 
-state 80
+state 82
+
+    (39) instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .
+
+    LLAVE_DER       reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+    error           reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+    IF              reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+    INPUT           reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+    LET             reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+    PRINT           reduce using rule 39 (instruccion -> INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA .)
+
+
+state 83
 
     (9) asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .
 
     LLAVE_DER       reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     error           reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
-    INPUT           reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     IF              reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+    INPUT           reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     LET             reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     IDENTIFICADOR   reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
     PRINT           reduce using rule 9 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
 
 
-state 81
+state 84
 
     (17) imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .
 
     LLAVE_DER       reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
     error           reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
-    INPUT           reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
     IF              reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
+    INPUT           reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
     LET             reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
     IDENTIFICADOR   reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
     PRINT           reduce using rule 17 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
 
 
-state 82
+state 85
 
-    (26) termino -> PAREN_IZQ expresion . PAREN_DER
+    (27) termino -> PAREN_IZQ expresion . PAREN_DER
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
-    PAREN_DER       shift and go to state 85
+    PAREN_DER       shift and go to state 89
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -2248,32 +2497,71 @@ state 82
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
 
-state 83
+state 86
 
-    (41) elementos -> elementos COMA expresion .
+    (38) expresion -> expresion INTERROGACION expresion DOSPUNTOS . expresion
+    (15) expresion -> . valor
+    (16) expresion -> . IDENTIFICADOR
+    (18) expresion -> . PAREN_IZQ expresion PAREN_DER
+    (19) expresion -> . expresion operador termino
+    (28) expresion -> . expresion AND expresion
+    (29) expresion -> . expresion OR expresion
+    (30) expresion -> . NOT expresion
+    (31) expresion -> . expresion MENOR expresion
+    (32) expresion -> . expresion MAYOR expresion
+    (33) expresion -> . expresion MENOR_IGUAL expresion
+    (34) expresion -> . expresion MAYOR_IGUAL expresion
+    (35) expresion -> . expresion IGUAL expresion
+    (36) expresion -> . expresion DIFERENTE expresion
+    (38) expresion -> . expresion INTERROGACION expresion DOSPUNTOS expresion
+    (42) expresion -> . CORCHETE_IZQ elementos CORCHETE_DER
+    (11) valor -> . NUMERO
+    (12) valor -> . CADENA
+    (13) valor -> . CARACTER
+    (14) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 27
+    PAREN_IZQ       shift and go to state 30
+    NOT             shift and go to state 31
+    CORCHETE_IZQ    shift and go to state 32
+    NUMERO          shift and go to state 33
+    CADENA          shift and go to state 34
+    CARACTER        shift and go to state 35
+    BOOLEANO        shift and go to state 36
+
+    expresion                      shift and go to state 90
+    valor                          shift and go to state 29
+
+state 87
+
+    (44) elementos -> elementos COMA expresion .
     (19) expresion -> expresion . operador termino
-    (27) expresion -> expresion . AND expresion
-    (28) expresion -> expresion . OR expresion
-    (30) expresion -> expresion . MENOR expresion
-    (31) expresion -> expresion . MAYOR expresion
-    (32) expresion -> expresion . MENOR_IGUAL expresion
-    (33) expresion -> expresion . MAYOR_IGUAL expresion
-    (34) expresion -> expresion . IGUAL expresion
-    (35) expresion -> expresion . DIFERENTE expresion
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
     (20) operador -> . SUMA
     (21) operador -> . RESTA
     (22) operador -> . MULT
     (23) operador -> . DIV
+    (24) operador -> . MODULO
 
-    CORCHETE_DER    reduce using rule 41 (elementos -> elementos COMA expresion .)
-    COMA            reduce using rule 41 (elementos -> elementos COMA expresion .)
+    CORCHETE_DER    reduce using rule 44 (elementos -> elementos COMA expresion .)
+    COMA            reduce using rule 44 (elementos -> elementos COMA expresion .)
     AND             shift and go to state 43
     OR              shift and go to state 44
     MENOR           shift and go to state 45
@@ -2282,129 +2570,242 @@ state 83
     MAYOR_IGUAL     shift and go to state 48
     IGUAL           shift and go to state 49
     DIFERENTE       shift and go to state 50
-    SUMA            shift and go to state 51
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 53
-    DIV             shift and go to state 54
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
 
     operador                       shift and go to state 42
 
-state 84
+state 88
 
-    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones . LLAVE_DER
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones . LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones . LLAVE_DER ELSE instruccion
+    (40) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones . LLAVE_DER
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones . LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (5) instrucciones -> instrucciones . instruccion
     (6) instruccion -> . asignacion
     (7) instruccion -> . imprimir
     (8) instruccion -> . error PUNTOCOMA
-    (36) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
-    LLAVE_DER       shift and go to state 86
+    LLAVE_DER       shift and go to state 91
     error           shift and go to state 14
-    INPUT           shift and go to state 15
-    IF              shift and go to state 16
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
     LET             shift and go to state 17
     IDENTIFICADOR   shift and go to state 9
     PRINT           shift and go to state 18
 
     instruccion                    shift and go to state 21
-    asignacion                     shift and go to state 12
-    imprimir                       shift and go to state 13
-
-state 85
-
-    (26) termino -> PAREN_IZQ expresion PAREN_DER .
-
-    PUNTOCOMA       reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    AND             reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    OR              reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    MENOR           reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    MAYOR           reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    MENOR_IGUAL     reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    MAYOR_IGUAL     reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    IGUAL           reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    DIFERENTE       reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    SUMA            reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    RESTA           reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    MULT            reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    DIV             reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    PAREN_DER       reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    CORCHETE_DER    reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-    COMA            reduce using rule 26 (termino -> PAREN_IZQ expresion PAREN_DER .)
-
-
-state 86
-
-    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER . ELSE LLAVE_IZQ instrucciones LLAVE_DER
-
-    LLAVE_DER       reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    error           reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    INPUT           reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    IF              reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    LET             reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    IDENTIFICADOR   reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    PRINT           reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
-    ELSE            shift and go to state 87
-
-
-state 87
-
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE . LLAVE_IZQ instrucciones LLAVE_DER
-
-    LLAVE_IZQ       shift and go to state 88
-
-
-state 88
-
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ . instrucciones LLAVE_DER
-    (4) instrucciones -> . instruccion
-    (5) instrucciones -> . instrucciones instruccion
-    (6) instruccion -> . asignacion
-    (7) instruccion -> . imprimir
-    (8) instruccion -> . error PUNTOCOMA
-    (36) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
-    (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
-    (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
-    (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
-
-    error           shift and go to state 14
-    INPUT           shift and go to state 15
-    IF              shift and go to state 16
-    LET             shift and go to state 17
-    IDENTIFICADOR   shift and go to state 9
-    PRINT           shift and go to state 18
-
-    instrucciones                  shift and go to state 89
-    instruccion                    shift and go to state 11
     asignacion                     shift and go to state 12
     imprimir                       shift and go to state 13
 
 state 89
 
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones . LLAVE_DER
-    (5) instrucciones -> instrucciones . instruccion
+    (27) termino -> PAREN_IZQ expresion PAREN_DER .
+
+    PUNTOCOMA       reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    AND             reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    OR              reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    MENOR           reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    MAYOR           reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    MENOR_IGUAL     reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    MAYOR_IGUAL     reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    IGUAL           reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    DIFERENTE       reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    INTERROGACION   reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    SUMA            reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    RESTA           reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    MULT            reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    DIV             reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    MODULO          reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    PAREN_DER       reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    CORCHETE_DER    reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    COMA            reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+    DOSPUNTOS       reduce using rule 27 (termino -> PAREN_IZQ expresion PAREN_DER .)
+
+
+state 90
+
+    (38) expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .
+    (19) expresion -> expresion . operador termino
+    (28) expresion -> expresion . AND expresion
+    (29) expresion -> expresion . OR expresion
+    (31) expresion -> expresion . MENOR expresion
+    (32) expresion -> expresion . MAYOR expresion
+    (33) expresion -> expresion . MENOR_IGUAL expresion
+    (34) expresion -> expresion . MAYOR_IGUAL expresion
+    (35) expresion -> expresion . IGUAL expresion
+    (36) expresion -> expresion . DIFERENTE expresion
+    (38) expresion -> expresion . INTERROGACION expresion DOSPUNTOS expresion
+    (20) operador -> . SUMA
+    (21) operador -> . RESTA
+    (22) operador -> . MULT
+    (23) operador -> . DIV
+    (24) operador -> . MODULO
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MENOR_IGUAL resolved as shift
+  ! shift/reduce conflict for MAYOR_IGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for INTERROGACION resolved as shift
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOCOMA       reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .)
+    PAREN_DER       reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .)
+    CORCHETE_DER    reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .)
+    COMA            reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .)
+    DOSPUNTOS       reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .)
+    AND             shift and go to state 43
+    OR              shift and go to state 44
+    MENOR           shift and go to state 45
+    MAYOR           shift and go to state 46
+    MENOR_IGUAL     shift and go to state 47
+    MAYOR_IGUAL     shift and go to state 48
+    IGUAL           shift and go to state 49
+    DIFERENTE       shift and go to state 50
+    INTERROGACION   shift and go to state 51
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    MODULO          shift and go to state 56
+
+  ! AND             [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! OR              [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! MENOR           [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! MAYOR           [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! MENOR_IGUAL     [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! IGUAL           [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! DIFERENTE       [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! INTERROGACION   [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! SUMA            [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! RESTA           [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! MULT            [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! DIV             [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+  ! MODULO          [ reduce using rule 38 (expresion -> expresion INTERROGACION expresion DOSPUNTOS expresion .) ]
+
+    operador                       shift and go to state 42
+
+state 91
+
+    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER . ELSE instruccion
+    (40) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER . ELSE LLAVE_IZQ instrucciones LLAVE_DER
+
+    ELSE            shift and go to state 92
+    LLAVE_DER       reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    error           reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    IF              reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    INPUT           reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    LET             reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    IDENTIFICADOR   reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    PRINT           reduce using rule 40 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+
+
+state 92
+
+    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE . instruccion
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE . LLAVE_IZQ instrucciones LLAVE_DER
     (6) instruccion -> . asignacion
     (7) instruccion -> . imprimir
     (8) instruccion -> . error PUNTOCOMA
-    (36) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
-    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
-    (38) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
     (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
     (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
-    LLAVE_DER       shift and go to state 90
+    LLAVE_IZQ       shift and go to state 93
     error           shift and go to state 14
-    INPUT           shift and go to state 15
-    IF              shift and go to state 16
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
+    LET             shift and go to state 17
+    IDENTIFICADOR   shift and go to state 9
+    PRINT           shift and go to state 18
+
+    instruccion                    shift and go to state 94
+    asignacion                     shift and go to state 12
+    imprimir                       shift and go to state 13
+
+state 93
+
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ . instrucciones LLAVE_DER
+    (4) instrucciones -> . instruccion
+    (5) instrucciones -> . instrucciones instruccion
+    (6) instruccion -> . asignacion
+    (7) instruccion -> . imprimir
+    (8) instruccion -> . error PUNTOCOMA
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
+
+    error           shift and go to state 14
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
+    LET             shift and go to state 17
+    IDENTIFICADOR   shift and go to state 9
+    PRINT           shift and go to state 18
+
+    instrucciones                  shift and go to state 95
+    instruccion                    shift and go to state 11
+    asignacion                     shift and go to state 12
+    imprimir                       shift and go to state 13
+
+state 94
+
+    (37) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .
+
+    LLAVE_DER       reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+    error           reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+    IF              reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+    INPUT           reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+    LET             reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+    IDENTIFICADOR   reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+    PRINT           reduce using rule 37 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion .)
+
+
+state 95
+
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones . LLAVE_DER
+    (5) instrucciones -> instrucciones . instruccion
+    (6) instruccion -> . asignacion
+    (7) instruccion -> . imprimir
+    (8) instruccion -> . error PUNTOCOMA
+    (37) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion
+    (39) instruccion -> . INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA
+    (40) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+    (41) instruccion -> . IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER
+    (9) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (10) asignacion -> . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (17) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
+
+    LLAVE_DER       shift and go to state 96
+    error           shift and go to state 14
+    IF              shift and go to state 15
+    INPUT           shift and go to state 16
     LET             shift and go to state 17
     IDENTIFICADOR   shift and go to state 9
     PRINT           shift and go to state 18
@@ -2413,57 +2814,35 @@ state 89
     asignacion                     shift and go to state 12
     imprimir                       shift and go to state 13
 
-state 90
+state 96
 
-    (38) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .
+    (41) instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .
 
-    LLAVE_DER       reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
-    error           reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
-    INPUT           reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
-    IF              reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
-    LET             reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
-    IDENTIFICADOR   reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
-    PRINT           reduce using rule 38 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    LLAVE_DER       reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    error           reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    IF              reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    INPUT           reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    LET             reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    IDENTIFICADOR   reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
+    PRINT           reduce using rule 41 (instruccion -> IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for AND in state 56 resolved as shift
-WARNING: shift/reduce conflict for OR in state 56 resolved as shift
-WARNING: shift/reduce conflict for MENOR in state 56 resolved as shift
-WARNING: shift/reduce conflict for MAYOR in state 56 resolved as shift
-WARNING: shift/reduce conflict for MENOR_IGUAL in state 56 resolved as shift
-WARNING: shift/reduce conflict for MAYOR_IGUAL in state 56 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 56 resolved as shift
-WARNING: shift/reduce conflict for DIFERENTE in state 56 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 56 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 56 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 56 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 56 resolved as shift
-WARNING: shift/reduce conflict for AND in state 67 resolved as shift
-WARNING: shift/reduce conflict for OR in state 67 resolved as shift
-WARNING: shift/reduce conflict for MENOR in state 67 resolved as shift
-WARNING: shift/reduce conflict for MAYOR in state 67 resolved as shift
-WARNING: shift/reduce conflict for MENOR_IGUAL in state 67 resolved as shift
-WARNING: shift/reduce conflict for MAYOR_IGUAL in state 67 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 67 resolved as shift
-WARNING: shift/reduce conflict for DIFERENTE in state 67 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 67 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 67 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 67 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 67 resolved as shift
-WARNING: shift/reduce conflict for AND in state 68 resolved as shift
-WARNING: shift/reduce conflict for OR in state 68 resolved as shift
-WARNING: shift/reduce conflict for MENOR in state 68 resolved as shift
-WARNING: shift/reduce conflict for MAYOR in state 68 resolved as shift
-WARNING: shift/reduce conflict for MENOR_IGUAL in state 68 resolved as shift
-WARNING: shift/reduce conflict for MAYOR_IGUAL in state 68 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 68 resolved as shift
-WARNING: shift/reduce conflict for DIFERENTE in state 68 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 68 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 68 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 68 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 68 resolved as shift
+WARNING: shift/reduce conflict for AND in state 58 resolved as shift
+WARNING: shift/reduce conflict for OR in state 58 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 58 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 58 resolved as shift
+WARNING: shift/reduce conflict for MENOR_IGUAL in state 58 resolved as shift
+WARNING: shift/reduce conflict for MAYOR_IGUAL in state 58 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 58 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 58 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 58 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 58 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 58 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 58 resolved as shift
 WARNING: shift/reduce conflict for AND in state 69 resolved as shift
 WARNING: shift/reduce conflict for OR in state 69 resolved as shift
 WARNING: shift/reduce conflict for MENOR in state 69 resolved as shift
@@ -2472,10 +2851,12 @@ WARNING: shift/reduce conflict for MENOR_IGUAL in state 69 resolved as shift
 WARNING: shift/reduce conflict for MAYOR_IGUAL in state 69 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 69 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 69 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 69 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 69 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 69 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 69 resolved as shift
 WARNING: shift/reduce conflict for DIV in state 69 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 69 resolved as shift
 WARNING: shift/reduce conflict for AND in state 70 resolved as shift
 WARNING: shift/reduce conflict for OR in state 70 resolved as shift
 WARNING: shift/reduce conflict for MENOR in state 70 resolved as shift
@@ -2484,10 +2865,12 @@ WARNING: shift/reduce conflict for MENOR_IGUAL in state 70 resolved as shift
 WARNING: shift/reduce conflict for MAYOR_IGUAL in state 70 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 70 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 70 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 70 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 70 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 70 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 70 resolved as shift
 WARNING: shift/reduce conflict for DIV in state 70 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 70 resolved as shift
 WARNING: shift/reduce conflict for AND in state 71 resolved as shift
 WARNING: shift/reduce conflict for OR in state 71 resolved as shift
 WARNING: shift/reduce conflict for MENOR in state 71 resolved as shift
@@ -2496,10 +2879,12 @@ WARNING: shift/reduce conflict for MENOR_IGUAL in state 71 resolved as shift
 WARNING: shift/reduce conflict for MAYOR_IGUAL in state 71 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 71 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 71 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 71 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 71 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 71 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 71 resolved as shift
 WARNING: shift/reduce conflict for DIV in state 71 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 71 resolved as shift
 WARNING: shift/reduce conflict for AND in state 72 resolved as shift
 WARNING: shift/reduce conflict for OR in state 72 resolved as shift
 WARNING: shift/reduce conflict for MENOR in state 72 resolved as shift
@@ -2508,10 +2893,12 @@ WARNING: shift/reduce conflict for MENOR_IGUAL in state 72 resolved as shift
 WARNING: shift/reduce conflict for MAYOR_IGUAL in state 72 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 72 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 72 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 72 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 72 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 72 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 72 resolved as shift
 WARNING: shift/reduce conflict for DIV in state 72 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 72 resolved as shift
 WARNING: shift/reduce conflict for AND in state 73 resolved as shift
 WARNING: shift/reduce conflict for OR in state 73 resolved as shift
 WARNING: shift/reduce conflict for MENOR in state 73 resolved as shift
@@ -2520,10 +2907,12 @@ WARNING: shift/reduce conflict for MENOR_IGUAL in state 73 resolved as shift
 WARNING: shift/reduce conflict for MAYOR_IGUAL in state 73 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 73 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 73 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 73 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 73 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 73 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 73 resolved as shift
 WARNING: shift/reduce conflict for DIV in state 73 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 73 resolved as shift
 WARNING: shift/reduce conflict for AND in state 74 resolved as shift
 WARNING: shift/reduce conflict for OR in state 74 resolved as shift
 WARNING: shift/reduce conflict for MENOR in state 74 resolved as shift
@@ -2532,7 +2921,51 @@ WARNING: shift/reduce conflict for MENOR_IGUAL in state 74 resolved as shift
 WARNING: shift/reduce conflict for MAYOR_IGUAL in state 74 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 74 resolved as shift
 WARNING: shift/reduce conflict for DIFERENTE in state 74 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 74 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 74 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 74 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 74 resolved as shift
 WARNING: shift/reduce conflict for DIV in state 74 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 74 resolved as shift
+WARNING: shift/reduce conflict for AND in state 75 resolved as shift
+WARNING: shift/reduce conflict for OR in state 75 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 75 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 75 resolved as shift
+WARNING: shift/reduce conflict for MENOR_IGUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for MAYOR_IGUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 75 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 75 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 75 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 75 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 75 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 75 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 75 resolved as shift
+WARNING: shift/reduce conflict for AND in state 76 resolved as shift
+WARNING: shift/reduce conflict for OR in state 76 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 76 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 76 resolved as shift
+WARNING: shift/reduce conflict for MENOR_IGUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for MAYOR_IGUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 76 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 76 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 76 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 76 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 76 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 76 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 76 resolved as shift
+WARNING: shift/reduce conflict for AND in state 90 resolved as shift
+WARNING: shift/reduce conflict for OR in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 90 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENOR_IGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for MAYOR_IGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 90 resolved as shift
+WARNING: shift/reduce conflict for INTERROGACION in state 90 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 90 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 90 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 90 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 90 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 90 resolved as shift

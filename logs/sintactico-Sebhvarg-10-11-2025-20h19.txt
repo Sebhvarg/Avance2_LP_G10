@@ -1,0 +1,8 @@
+Error de sintaxis en la línea 4: token=LET valor=let
+Error de sintaxis en la línea 6: token=IDENTIFICADOR valor=e
+Error de sintaxis en la línea 7: token=LLAVE_DER valor=}
+Resultado del análisis sintáctico:
+Errores sintácticos:
+Error de sintaxis en la línea 4: token=LET valor=let
+Error de sintaxis en la línea 6: token=IDENTIFICADOR valor=e
+Error de sintaxis en la línea 7: token=LLAVE_DER valor=}
