@@ -1,0 +1,7 @@
+Resultado del análisis sintáctico:
+('funcion', 'main')
+  ('imprimir', '"Hello, world!"')
+  ('asignacion', 'x', 5)
+  ('asignacion', 'y', 10)
+  ('asignacion', 'z', ('operacion_aritmetica', '-', ('operacion_aritmetica', '+', ('identificador', 'x'), 'y'), 3))
+  ('re_asignacion', 'x', ('operacion_booleana', '&&', ('identificador', 'y'), ('identificador', 'z')))

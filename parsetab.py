@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'programaAND AND_IGUAL AS ASIGNACION ASYNC AWAIT BIT_AND BIT_NOT BIT_OR BIT_XOR BOOLEANO BREAK CADENA CARACTER COMA COMENTARIO_BLOQUE COMENTARIO_LINEA CONST CONTINUE CORCHETE_DER CORCHETE_IZQ CRATE DESPLAZAR_DER DESPLAZAR_IZQ DESP_DER_IGUAL DESP_IZQ_IGUAL DIFERENTE DIV DIV_IGUAL DOSPUNTOS DYN ELSE ENUM FALSE FLECHA FN FOR IDENTIFICADOR IF IGUAL IMPL IN INPUT INTERROGACION LET LLAVE_DER LLAVE_IZQ LOOP MAS_IGUAL MATCH MAYOR MAYOR_IGUAL MENOR MENOR_IGUAL MENOS_IGUAL MOD MODULO MOD_IGUAL MOVE MULT MUT NOT NUMERO OR OR_IGUAL PAREN_DER PAREN_IZQ POR_IGUAL POTENCIA PRINT PUB PUNTO PUNTOCOMA REF RESTA RETURN SELF STATIC STRUCT SUMA SUPER TRAIT TRUE TYPE UNSAFE USE WHERE WHILE XOR_IGUALprograma : funcion\n| programa funcionfuncion : FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DERinstrucciones : instruccion\n| instrucciones instruccioninstruccion : asignacion\n| imprimirasignacion : LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMAimprimir : PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMAvalor : NUMERO\n| CADENA\n| CARACTER\n| BOOLEANOexpresion : valorexpresion : expresion SUMA expresion\n| expresion RESTA expresion\n| expresion MULT expresion\n| expresion DIV expresionexpresion : IDENTIFICADOR'
+_lr_signature = 'programaAND AND_IGUAL AS ASIGNACION ASYNC AWAIT BIT_AND BIT_NOT BIT_OR BIT_XOR BOOLEANO BREAK CADENA CARACTER COMA COMENTARIO_BLOQUE COMENTARIO_LINEA CONST CONTINUE CORCHETE_DER CORCHETE_IZQ CRATE DESPLAZAR_DER DESPLAZAR_IZQ DESP_DER_IGUAL DESP_IZQ_IGUAL DIFERENTE DIV DIV_IGUAL DOSPUNTOS DYN ELSE ENUM FALSE FLECHA FN FOR IDENTIFICADOR IF IGUAL IMPL IN INPUT INTERROGACION LET LLAVE_DER LLAVE_IZQ LOOP MAS_IGUAL MATCH MAYOR MAYOR_IGUAL MENOR MENOR_IGUAL MENOS_IGUAL MOD MODULO MOD_IGUAL MOVE MULT MUT NOT NUMERO OR OR_IGUAL PAREN_DER PAREN_IZQ POR_IGUAL POTENCIA PRINT PUB PUNTO PUNTOCOMA REF RESTA RETURN SELF STATIC STRUCT SUMA SUPER TRAIT TRUE TYPE UNSAFE USE WHERE WHILE XOR_IGUALprograma : funcion\n| programa funcionfuncion : FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DERinstrucciones : instruccion\n| instrucciones instruccioninstruccion : asignacion\n| imprimirasignacion : LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMAasignacion : IDENTIFICADOR ASIGNACION expresion PUNTOCOMAvalor : NUMERO\n| CADENA\n| CARACTER\n| BOOLEANOexpresion : valorexpresion : IDENTIFICADORimprimir : PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMAexpresion : expresion operador terminooperador : SUMA\n| RESTA\n| MULT\n| DIVtermino : valor\n| IDENTIFICADOR\n| PAREN_IZQ expresion PAREN_DERexpresion : expresion AND expresion\n| expresion OR expresion\n| NOT expresionexpresion : expresion MENOR expresion\n| expresion MAYOR expresion\n| expresion MENOR_IGUAL expresion\n| expresion MAYOR_IGUAL expresion\n| expresion IGUAL expresion\n| expresion DIFERENTE expresion'
     
-_lr_action_items = {'FN':([0,1,2,4,15,],[3,3,-1,-2,-3,]),'$end':([1,2,4,15,],[0,-1,-2,-3,]),'IDENTIFICADOR':([3,13,18,19,29,30,31,32,],[5,17,22,22,22,22,22,22,]),'PAREN_IZQ':([5,14,],[6,18,]),'PAREN_DER':([6,20,21,22,23,24,25,26,35,36,37,38,],[7,28,-14,-19,-10,-11,-12,-13,-15,-16,-17,-18,]),'LLAVE_IZQ':([7,],[8,]),'LET':([8,9,10,11,12,16,33,34,],[13,13,-4,-6,-7,-5,-8,-9,]),'PRINT':([8,9,10,11,12,16,33,34,],[14,14,-4,-6,-7,-5,-8,-9,]),'LLAVE_DER':([9,10,11,12,16,33,34,],[15,-4,-6,-7,-5,-8,-9,]),'ASIGNACION':([17,],[19,]),'NUMERO':([18,19,29,30,31,32,],[23,23,23,23,23,23,]),'CADENA':([18,19,29,30,31,32,],[24,24,24,24,24,24,]),'CARACTER':([18,19,29,30,31,32,],[25,25,25,25,25,25,]),'BOOLEANO':([18,19,29,30,31,32,],[26,26,26,26,26,26,]),'SUMA':([20,21,22,23,24,25,26,27,35,36,37,38,],[29,-14,-19,-10,-11,-12,-13,29,29,29,29,29,]),'RESTA':([20,21,22,23,24,25,26,27,35,36,37,38,],[30,-14,-19,-10,-11,-12,-13,30,30,30,30,30,]),'MULT':([20,21,22,23,24,25,26,27,35,36,37,38,],[31,-14,-19,-10,-11,-12,-13,31,31,31,31,31,]),'DIV':([20,21,22,23,24,25,26,27,35,36,37,38,],[32,-14,-19,-10,-11,-12,-13,32,32,32,32,32,]),'PUNTOCOMA':([21,22,23,24,25,26,27,28,35,36,37,38,],[-14,-19,-10,-11,-12,-13,33,34,-15,-16,-17,-18,]),}
+_lr_action_items = {'FN':([0,1,2,4,17,],[3,3,-1,-2,-3,]),'$end':([1,2,4,17,],[0,-1,-2,-3,]),'IDENTIFICADOR':([3,8,10,11,12,13,14,16,18,20,24,29,31,32,33,34,35,36,37,38,39,40,41,42,43,44,51,60,61,],[5,9,9,-4,-6,-7,19,21,-5,21,21,21,-9,50,21,21,21,21,21,21,21,21,-18,-19,-20,-21,21,-8,-16,]),'PAREN_IZQ':([5,15,32,41,42,43,44,],[6,20,51,-18,-19,-20,-21,]),'PAREN_DER':([6,21,23,25,26,27,28,30,45,48,49,50,52,53,54,55,56,57,58,59,62,63,],[7,-15,-14,-10,-11,-12,-13,47,-27,-17,-22,-23,-25,-26,-28,-29,-30,-31,-32,-33,63,-24,]),'LLAVE_IZQ':([7,],[8,]),'LET':([8,10,11,12,13,18,31,60,61,],[14,14,-4,-6,-7,-5,-9,-8,-16,]),'PRINT':([8,10,11,12,13,18,31,60,61,],[15,15,-4,-6,-7,-5,-9,-8,-16,]),'ASIGNACION':([9,19,],[16,29,]),'LLAVE_DER':([10,11,12,13,18,31,60,61,],[17,-4,-6,-7,-5,-9,-8,-16,]),'NOT':([16,20,24,29,33,34,35,36,37,38,39,40,51,],[24,24,24,24,24,24,24,24,24,24,24,24,24,]),'NUMERO':([16,20,24,29,32,33,34,35,36,37,38,39,40,41,42,43,44,51,],[25,25,25,25,25,25,25,25,25,25,25,25,25,-18,-19,-20,-21,25,]),'CADENA':([16,20,24,29,32,33,34,35,36,37,38,39,40,41,42,43,44,51,],[26,26,26,26,26,26,26,26,26,26,26,26,26,-18,-19,-20,-21,26,]),'CARACTER':([16,20,24,29,32,33,34,35,36,37,38,39,40,41,42,43,44,51,],[27,27,27,27,27,27,27,27,27,27,27,27,27,-18,-19,-20,-21,27,]),'BOOLEANO':([16,20,24,29,32,33,34,35,36,37,38,39,40,41,42,43,44,51,],[28,28,28,28,28,28,28,28,28,28,28,28,28,-18,-19,-20,-21,28,]),'PUNTOCOMA':([21,22,23,25,26,27,28,45,46,47,48,49,50,52,53,54,55,56,57,58,59,63,],[-15,31,-14,-10,-11,-12,-13,-27,60,61,-17,-22,-23,-25,-26,-28,-29,-30,-31,-32,-33,-24,]),'AND':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,33,-14,-10,-11,-12,-13,33,33,33,-17,-22,-23,33,33,33,33,33,33,33,33,33,-24,]),'OR':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,34,-14,-10,-11,-12,-13,34,34,34,-17,-22,-23,34,34,34,34,34,34,34,34,34,-24,]),'MENOR':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,35,-14,-10,-11,-12,-13,35,35,35,-17,-22,-23,35,35,35,35,35,35,35,35,35,-24,]),'MAYOR':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,36,-14,-10,-11,-12,-13,36,36,36,-17,-22,-23,36,36,36,36,36,36,36,36,36,-24,]),'MENOR_IGUAL':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,37,-14,-10,-11,-12,-13,37,37,37,-17,-22,-23,37,37,37,37,37,37,37,37,37,-24,]),'MAYOR_IGUAL':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,38,-14,-10,-11,-12,-13,38,38,38,-17,-22,-23,38,38,38,38,38,38,38,38,38,-24,]),'IGUAL':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,39,-14,-10,-11,-12,-13,39,39,39,-17,-22,-23,39,39,39,39,39,39,39,39,39,-24,]),'DIFERENTE':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,40,-14,-10,-11,-12,-13,40,40,40,-17,-22,-23,40,40,40,40,40,40,40,40,40,-24,]),'SUMA':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,41,-14,-10,-11,-12,-13,41,41,41,-17,-22,-23,41,41,41,41,41,41,41,41,41,-24,]),'RESTA':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,42,-14,-10,-11,-12,-13,42,42,42,-17,-22,-23,42,42,42,42,42,42,42,42,42,-24,]),'MULT':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,43,-14,-10,-11,-12,-13,43,43,43,-17,-22,-23,43,43,43,43,43,43,43,43,43,-24,]),'DIV':([21,22,23,25,26,27,28,30,45,46,48,49,50,52,53,54,55,56,57,58,59,62,63,],[-15,44,-14,-10,-11,-12,-13,44,44,44,-17,-22,-23,44,44,44,44,44,44,44,44,44,-24,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'funcion':([0,1,],[2,4,]),'instrucciones':([8,],[9,]),'instruccion':([8,9,],[10,16,]),'asignacion':([8,9,],[11,11,]),'imprimir':([8,9,],[12,12,]),'expresion':([18,19,29,30,31,32,],[20,27,35,36,37,38,]),'valor':([18,19,29,30,31,32,],[21,21,21,21,21,21,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'funcion':([0,1,],[2,4,]),'instrucciones':([8,],[10,]),'instruccion':([8,10,],[11,18,]),'asignacion':([8,10,],[12,12,]),'imprimir':([8,10,],[13,13,]),'expresion':([16,20,24,29,33,34,35,36,37,38,39,40,51,],[22,30,45,46,52,53,54,55,56,57,58,59,62,]),'valor':([16,20,24,29,32,33,34,35,36,37,38,39,40,51,],[23,23,23,23,49,23,23,23,23,23,23,23,23,23,]),'operador':([22,30,45,46,52,53,54,55,56,57,58,59,62,],[32,32,32,32,32,32,32,32,32,32,32,32,32,]),'termino':([32,],[48,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -35,15 +35,29 @@ _lr_productions = [
   ('instruccion -> asignacion','instruccion',1,'p_instruccion','main.py',51),
   ('instruccion -> imprimir','instruccion',1,'p_instruccion','main.py',52),
   ('asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA','asignacion',5,'p_asignacion','main.py',56),
-  ('imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA','imprimir',5,'p_imprimir','main.py',60),
-  ('valor -> NUMERO','valor',1,'p_valor','main.py',64),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',65),
-  ('valor -> CARACTER','valor',1,'p_valor','main.py',66),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',67),
-  ('expresion -> valor','expresion',1,'p_expresion','main.py',71),
-  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_binaria','main.py',75),
-  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_binaria','main.py',76),
-  ('expresion -> expresion MULT expresion','expresion',3,'p_expresion_binaria','main.py',77),
-  ('expresion -> expresion DIV expresion','expresion',3,'p_expresion_binaria','main.py',78),
-  ('expresion -> IDENTIFICADOR','expresion',1,'p_expresion_identificador','main.py',82),
+  ('asignacion -> IDENTIFICADOR ASIGNACION expresion PUNTOCOMA','asignacion',4,'p_re_asignacion','main.py',59),
+  ('valor -> NUMERO','valor',1,'p_valor','main.py',63),
+  ('valor -> CADENA','valor',1,'p_valor','main.py',64),
+  ('valor -> CARACTER','valor',1,'p_valor','main.py',65),
+  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',66),
+  ('expresion -> valor','expresion',1,'p_expresion','main.py',70),
+  ('expresion -> IDENTIFICADOR','expresion',1,'p_expresion_identificador','main.py',74),
+  ('imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA','imprimir',5,'p_imprimir','main.py',81),
+  ('expresion -> expresion operador termino','expresion',3,'p_expresion_aritmetica','main.py',88),
+  ('operador -> SUMA','operador',1,'p_operador','main.py',95),
+  ('operador -> RESTA','operador',1,'p_operador','main.py',96),
+  ('operador -> MULT','operador',1,'p_operador','main.py',97),
+  ('operador -> DIV','operador',1,'p_operador','main.py',98),
+  ('termino -> valor','termino',1,'p_termino','main.py',102),
+  ('termino -> IDENTIFICADOR','termino',1,'p_termino','main.py',103),
+  ('termino -> PAREN_IZQ expresion PAREN_DER','termino',3,'p_termino','main.py',104),
+  ('expresion -> expresion AND expresion','expresion',3,'p_expresion_booleana','main.py',111),
+  ('expresion -> expresion OR expresion','expresion',3,'p_expresion_booleana','main.py',112),
+  ('expresion -> NOT expresion','expresion',2,'p_expresion_booleana','main.py',113),
+  ('expresion -> expresion MENOR expresion','expresion',3,'p_expresion_relacional','main.py',120),
+  ('expresion -> expresion MAYOR expresion','expresion',3,'p_expresion_relacional','main.py',121),
+  ('expresion -> expresion MENOR_IGUAL expresion','expresion',3,'p_expresion_relacional','main.py',122),
+  ('expresion -> expresion MAYOR_IGUAL expresion','expresion',3,'p_expresion_relacional','main.py',123),
+  ('expresion -> expresion IGUAL expresion','expresion',3,'p_expresion_relacional','main.py',124),
+  ('expresion -> expresion DIFERENTE expresion','expresion',3,'p_expresion_relacional','main.py',125),
 ]
