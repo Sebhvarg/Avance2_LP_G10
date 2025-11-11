@@ -202,6 +202,74 @@ def p_llamada_funcion(p):
 def p_llamada_funcion_args(p):
     'expresion : IDENTIFICADOR PAREN_IZQ elementos PAREN_DER'
     p[0] = ('call_func', p[1], p[3])
+
+
+# ============================================================
+# Inicio: Reglas Sintácticas - Aporte de Carlos Ronquillo (Avance 2)
+# Temas: Clases, Propiedades y Métodos
+# ============================================================
+
+def p_clase(p):
+    '''
+    clase : CLASS IDENTIFICADOR LLAVE_IZQ cuerpo_clase LLAVE_DER
+    '''
+    print(f"Línea {p.lineno(1)}: Definición de clase '{p[2]}'")
+
+def p_cuerpo_clase(p):
+    '''
+    cuerpo_clase : lista_miembros
+    '''
+
+def p_lista_miembros(p):
+    '''
+    lista_miembros : lista_miembros miembro
+                   | miembro
+    '''
+
+def p_miembro(p):
+    '''
+    miembro : propiedad
+            | metodo
+    '''
+
+def p_propiedad(p):
+    '''
+    propiedad : LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    '''
+    print(f"Propiedad de clase: {p[2]} asignada a {p[4]}")
+
+def p_metodo(p):
+    '''
+    metodo : FN IDENTIFICADOR PAREN_IZQ parametros_opt PAREN_DER LLAVE_IZQ cuerpo LLAVE_DER
+    '''
+    print(f"Método de clase: {p[2]}() definido")
+
+def p_parametros_opt(p):
+    '''
+    parametros_opt : parametros
+                   | empty
+    '''
+
+def p_parametros(p):
+    '''
+    parametros : IDENTIFICADOR
+               | parametros COMA IDENTIFICADOR
+    '''
+
+def p_cuerpo(p):
+    '''
+    cuerpo : instrucciones
+    '''
+
+def p_uso_clase(p):
+    '''
+    uso_clase : IDENTIFICADOR PUNTO IDENTIFICADOR PAREN_IZQ parametros_opt PAREN_DER PUNTOCOMA
+    '''
+    print(f"Uso de clase '{p[1]}': llamada al método '{p[3]}'()")
+
+# ============================================================
+# Fin: Reglas Sintácticas - Aporte de Carlos Ronquillo (Avance 2)
+# ============================================================
 # ------------------ Fin Carlos Ronquillo ---------------
 
 
