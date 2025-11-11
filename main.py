@@ -140,6 +140,39 @@ def p_expresion_relacional(p):
 
 # ------------------ Derian Baque ------------------
 
+# Ingreso de datos por teclado
+def p_input(p):
+    'instruccion : INPUT PAREN_IZQ CADENA PAREN_DER PUNTOCOMA'
+    p[0] = ('input', p[3])
+
+# Condicionales con conectores lógicos
+def p_condicional(p):
+    'instruccion : IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER'
+    p[0] = ('condicional', p[3], p[6])
+
+def p_condicional_else(p):
+    'instruccion : IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE LLAVE_IZQ instrucciones LLAVE_DER'
+    p[0] = ('condicional_else', p[3], p[6], p[10])
+
+# Estructuras de datos (listas)
+def p_estructura_lista(p):
+    'expresion : CORCHETE_IZQ elementos CORCHETE_DER'
+    p[0] = ('lista', p[2])
+
+def p_elementos(p):
+    '''elementos : expresion
+                 | elementos COMA expresion'''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[3]]
+
+# ------------------ Fin  Derian Baque ---------------
+
+
+
+
+
 
 # ------------------ Fin  Derian Baque ---------------
 

@@ -1,0 +1,4 @@
+Error de sintaxis: fin de entrada inesperado
+Resultado del análisis sintáctico:
+Errores sintácticos:
+Error de sintaxis: fin de entrada inesperado
