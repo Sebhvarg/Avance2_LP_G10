@@ -71,7 +71,8 @@ def p_re_asignacion(p):
     p[0] = ('re_asignacion', p[1], p[3])
 
 def p_valor(p):
-    '''valor : NUMERO
+    '''valor : ENTERO
+             | FLOTANTE
              | CADENA
              | CARACTER
              | BOOLEANO'''
@@ -176,9 +177,35 @@ def p_elementos(p):
 
 # ------------------ Fin  Derian Baque ---------------
 
-# ------------------ Carlos Ronquillo ------------------
 
+# ------------------ Carlos Ronquillo ------------------
+def p_acceso_indice(p):
+    '''acceso : IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER'''
+    p[0] = ('acceso_indice', p[1], p[3])
+
+def p_bucle_for(p):
+    '''instruccion : FOR PAREN_IZQ IDENTIFICADOR IN expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER'''
+    p[0] = ('for_in', p[3], p[5], p[9])
+
+def p_bucle_while(p):
+    'instruccion : WHILE PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER'
+    p[0] = ('while', p[3], p[6])
+
+def p_return(p):
+    'instruccion : RETURN expresion PUNTOCOMA'
+    p[0] = ('return', p[2])
+
+def p_llamada_funcion(p):
+    'expresion : IDENTIFICADOR PAREN_IZQ PAREN_DER'
+    p[0] = ('call_func', p[1], [])
+
+def p_llamada_funcion_args(p):
+    'expresion : IDENTIFICADOR PAREN_IZQ elementos PAREN_DER'
+    p[0] = ('call_func', p[1], p[3])
 # ------------------ Fin Carlos Ronquillo ---------------
+
+
+
 
 # ==========================================================
 
