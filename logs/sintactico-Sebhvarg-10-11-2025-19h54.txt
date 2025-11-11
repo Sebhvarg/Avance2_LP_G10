@@ -1,2 +1,0 @@
-Resultado del análisis sintáctico:
-Error de sintaxis en la línea 6: token=IDENTIFICADOR valor=e
