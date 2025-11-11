@@ -22,7 +22,7 @@ tokens = [
     'ASIGNACION', 'SUMA', 'RESTA', 'MULT', 'DIV',
     'PAREN_IZQ', 'PAREN_DER', 'LLAVE_IZQ', 'LLAVE_DER',
     'PUNTOCOMA', 'PUNTO', 'MODULO', 'POTENCIA',
-    'MENOR', 'COMA', 'DOSPUNTOS', 'CARACTER', 'BOOLEANO',
+    'MENOR', 'COMA', 'DOSPUNTOS', 'CARACTER', 'BOOLEANO', 'ENTERO', 'FLOTANTE',
     # Comentarios
     'COMENTARIO_LINEA', 'COMENTARIO_BLOQUE',
     #Operadores Relacionales y Lógicos
@@ -159,10 +159,18 @@ def t_IDENTIFICADOR(t):
     t.type = reservadas.get(t.value, 'IDENTIFICADOR')
     return t
 
-def t_NUMERO(t):
-    r'\d+(\.\d+)?'
-    t.value = float(t.value) if '.' in t.value else int(t.value)
+# Aporte Carlos (separar t_NUMERO en t_FLOTANTE y t_ENTERO)
+def t_FLOTANTE(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
     return t
+
+def t_ENTERO(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
+# Fin aporte Carlos
 
 def t_CADENA(t):
     r'\"([^\\\n]|(\\.))*?\"'
