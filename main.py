@@ -146,7 +146,7 @@ def p_expresion_relacional(p):
     p[0] = ('operacion_relacional', p[2], p[1], p[3])
 
 def p_condicional_elif(p):
-    'instruccion : IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion'
+    'condicional_elif : IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion'
     p[0] = ('condicional_elif', p[3], p[6], p[9])
 
 def p_expresion_ternaria(p):
