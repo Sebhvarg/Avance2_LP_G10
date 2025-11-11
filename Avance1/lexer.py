@@ -159,10 +159,18 @@ def t_IDENTIFICADOR(t):
     t.type = reservadas.get(t.value, 'IDENTIFICADOR')
     return t
 
-def t_NUMERO(t):
-    r'\d+(\.\d+)?'
-    t.value = float(t.value) if '.' in t.value else int(t.value)
+# Aporte Carlos (separar t_NUMERO en t_FLOTANTE y t_ENTERO)
+def t_FLOTANTE(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
     return t
+
+def t_ENTERO(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
+# Fin aporte Carlos
 
 def t_CADENA(t):
     r'\"([^\\\n]|(\\.))*?\"'
