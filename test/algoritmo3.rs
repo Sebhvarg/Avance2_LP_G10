@@ -1,11 +1,26 @@
-struct Persona {
-    nombre: String,
-    edad: i32
-}
+// Algoritmo 3 - Carlos Ronquillo (carrbrus)
+// Clases, propiedades y métodos — sintaxis compatible con el parser actual
 
-impl Persona {
-    fn saludar(&self) {
-        println!("Hola, soy {}", self.nombre);
+class Persona {
+    let nombre = "Carlos";
+    let edad = 22;
+
+    fn saludar() {
+        print("Hola, mi nombre es ");
+        print(nombre);
+    }
+
+    fn cumplir_anios() {
+        edad = edad + 1;
+        print("Ahora tengo ");
+        print(edad);
+        print(" años.");
     }
 }
+
+fn main() {
+    Persona.saludar();
+    Persona.cumplir_anios();
+}
+
 
