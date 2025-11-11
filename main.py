@@ -11,6 +11,9 @@ import os
 import subprocess
 import sys
 
+# Guarda el último error sintáctico reportado por p_error
+last_syntax_error = None
+
 # ------------------------------------------------------------
 # Integrantes:
 #   Derian Baque Choez (fernan0502)
@@ -143,11 +146,17 @@ def p_expresion_relacional(p):
 # Manejo de errores
 # ------------------------------------------------------------
 def p_error(p):
+    global last_syntax_error
     if p is None:
-        print("Error de sintaxis: fin de entrada inesperado")
+        # fin de entrada inesperado
+        msg = "Error de sintaxis: fin de entrada inesperado"
+        print(msg)
+        last_syntax_error = msg
     else:
         lineno = getattr(p, 'lineno', 'desconocida')
-        print(f"Error de sintaxis en la línea {lineno}: token={p.type} valor={p.value}")
+        msg = f"Error de sintaxis en la línea {lineno}: token={p.type} valor={p.value}"
+        print(msg)
+        last_syntax_error = msg
 
 
 # ------------------------------------------------------------
@@ -196,6 +205,10 @@ if __name__ == "__main__":
                     indent_str = '  ' * indent
                     lines = []
                     if res is None:
+                        # Si hubo un error sintáctico, escribir el mensaje capturado
+                        err = globals().get('last_syntax_error')
+                        if err:
+                            return [indent_str + err]
                         return [indent_str + '<sin resultado>']
                     if isinstance(res, list):
                         for itm in res:
