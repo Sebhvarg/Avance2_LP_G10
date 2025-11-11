@@ -1,0 +1,8 @@
+Línea 1: FN -> fn
+Línea 1: IDENTIFICADOR -> main
+Línea 1: PAREN_IZQ -> (
+Línea 1: PAREN_DER -> )
+Línea 1: LLAVE_IZQ -> {
+Línea 2: LET -> let
+Línea 2: IDENTIFICADOR -> x
+Línea 2: ASIGNACION -> =

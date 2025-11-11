@@ -22,7 +22,7 @@ tokens = [
     'ASIGNACION', 'SUMA', 'RESTA', 'MULT', 'DIV',
     'PAREN_IZQ', 'PAREN_DER', 'LLAVE_IZQ', 'LLAVE_DER',
     'PUNTOCOMA', 'PUNTO', 'MODULO', 'POTENCIA',
-    'MENOR', 'COMA', 'DOSPUNTOS', 'CARACTER', 'BOOLEANO',
+    'MENOR', 'COMA', 'DOSPUNTOS', 'CARACTER', 'BOOLEANO', 'ENTERO', 'FLOTANTE'
     # Comentarios
     'COMENTARIO_LINEA', 'COMENTARIO_BLOQUE',
     #Operadores Relacionales y Lógicos
