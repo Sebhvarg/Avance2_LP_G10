@@ -1,5 +1,5 @@
 # ------------------------------------------------------------ 
-# lexer.py
+# parser.py
 # Analizador Sintáctico usando PLY.Yacc
 # Grupo 10
 # ------------------------------------------------------------
@@ -10,6 +10,7 @@ import datetime
 import os
 import subprocess
 import sys
+
 # ------------------------------------------------------------
 # Integrantes:
 #   Derian Baque Choez (fernan0502)
@@ -17,83 +18,135 @@ import sys
 # ------------------------------------------------------------
 
 
+# ------------------------------------------------------------
+# Símbolo inicial
+# ------------------------------------------------------------
+start = 'programa'
 
-#Funcion de error definida
+def p_programa(p):
+    '''programa : funcion
+                | programa funcion'''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[2]]
+
 
 # ------------------------------------------------------------
 # Reglas de la gramática
+# ------------------------------------------------------------
+def p_funcion(p):
+    'funcion : FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER'
+    p[0] = ('funcion', p[2], p[6])
+
+def p_instrucciones(p):
+    '''instrucciones : instruccion
+                     | instrucciones instruccion'''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[2]]
+
+def p_instruccion(p):
+    '''instruccion : asignacion
+                   | imprimir'''
+    p[0] = p[1]
 
 def p_asignacion(p):
     'asignacion : LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA'
-    p[0] = ('asignacion', p[1], p[3])
-    
+    p[0] = ('asignacion', p[2], p[4])
+
 def p_valor(p):
     '''valor : NUMERO
              | CADENA
              | CARACTER
              | BOOLEANO'''
-    p[0] = ('valor', p[1])
-
+    p[0] = p[1]
 
 def p_expresion(p):
-    """expresion : valor"""
-    # Simple expression rule (expand later): an expresion can be a single valor
-    p[0] = ('expresion', p[1])
-  
+    'expresion : valor'
+    p[0] = p[1]
 
-# Error rule for syntax errors
+def p_expresion_binaria(p):
+    '''expresion : expresion SUMA expresion
+                 | expresion RESTA expresion
+                 | expresion MULT expresion
+                 | expresion DIV expresion'''
+    p[0] = ('binaria', p[2], p[1], p[3])
+
+def p_expresion_identificador(p):
+    'expresion : IDENTIFICADOR'
+    p[0] = ('identificador', p[1])
+
+# ==========================================================
+# ------------------ Sebastian Holguin ------------------
+
+def p_imprimir(p):
+    'imprimir : PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA'
+    p[0] = ('imprimir', p[3])
+# ------------------ Fin  Sebastian Holguin ---------------
+
+# ------------------ Derian Baque ------------------
+
+
+# ------------------ Fin  Derian Baque ---------------
+
+# ------------------ Carlos Ronquillo ------------------
+
+# ------------------ Fin Carlos Ronquillo ---------------
+
+# ==========================================================
+
+# ------------------------------------------------------------
+# Manejo de errores
+# ------------------------------------------------------------
 def p_error(p):
-    # p can be None when the parser reaches EOF or an unexpected token
     if p is None:
         print("Error de sintaxis: fin de entrada inesperado")
     else:
-        # Some tokens may not carry a lineno attribute; guard accordingly
         lineno = getattr(p, 'lineno', 'desconocida')
         print(f"Error de sintaxis en la línea {lineno}: token={p.type} valor={p.value}")
 
-# Build the parser
+
+# ------------------------------------------------------------
+# Construcción del parser
+# ------------------------------------------------------------
 parser = yacc.yacc()
 
 
+# ------------------------------------------------------------
+# Ejecución principal
+# ------------------------------------------------------------
 if __name__ == "__main__":
     print("Analizador Sintáctico - Ingrese su algoritmo:")
-    e = 0
     if len(sys.argv) > 1:
         archivo = sys.argv[1]
     else:
         archivo = input("Ingrese la ruta del archivo a analizar: ").strip()
+
     try:
         with open(archivo, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
+            codigo = f.read()
 
-            # Prepare log file
-            log_dir = "log"
-            os.makedirs(log_dir, exist_ok=True)
-            usuario = get_git_user()
-            fecha_hora = datetime.datetime.now().strftime("%d-%m-%Y-%Hh%M")
-            log_file = os.path.join(log_dir, f"sintactico-{usuario}-{fecha_hora}.txt")
+        # Crear carpeta de logs
+        log_dir = "log"
+        os.makedirs(log_dir, exist_ok=True)
+        usuario = get_git_user()
+        fecha_hora = datetime.datetime.now().strftime("%d-%m-%Y-%Hh%M")
+        log_file = os.path.join(log_dir, f"sintactico-{usuario}-{fecha_hora}.txt")
 
-
+        # Analizar todo el código
+        try:
+            result = parser.parse(codigo)
+            print("\nResultado del análisis sintáctico:\n", result)
             with open(log_file, "a", encoding="utf-8") as log_f:
-                for lineno, raw_line in enumerate(lines, start=1):
-                    line = raw_line.rstrip('\n')
-                    text = line.strip()
-                    if not line.strip():
-                        continue
-                    try:
-                        result = parser.parse(line)
-                        print(f"Linea {lineno}: {text} \n ==> { result}")
-                        log_f.write(f"Linea {lineno}: {text} \n ==> { result}\n")
-                    except Exception as ex:
-           
-                        err_msg = f"Error en linea {lineno}: {ex}"
-                        print(err_msg)
-                        log_f.write(err_msg + "\n")
+                log_f.write(f"Resultado del análisis sintáctico:\n{result}\n")
+        except Exception as ex:
+            print(f" Error en el análisis: {ex}")
+            with open(log_file, "a", encoding="utf-8") as log_f:
+                log_f.write(f"Error en el análisis: {ex}\n")
+
     except FileNotFoundError:
-        print(f"Error: No se encontró el archivo '{archivo}'")
+        print(f" Error: No se encontró el archivo '{archivo}'")
     except Exception as ex:
-        print(f"Error al leer el archivo '{archivo}': {ex}")
-   
-        
-           
-        
+        print(f" Error al leer el archivo '{archivo}': {ex}")

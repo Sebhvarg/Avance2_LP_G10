@@ -54,6 +54,7 @@ tokens = [
     'DESP_IZQ_IGUAL',  # <<=
     'DESP_DER_IGUAL',  # >>=
     # ---------------- Fin Carlos ----------------
+    
 
     ]
     
@@ -115,7 +116,8 @@ t_CORCHETE_IZQ = r'\['
 t_CORCHETE_DER = r'\]'
 t_FLECHA       = r'->'
 t_INTERROGACION= r'\?'
-
+t_FN          = r'fn'
+t_LET        = r'let'
 #--------- Fin Sebastian --------
 
 # -------- Aporte Carlos --------

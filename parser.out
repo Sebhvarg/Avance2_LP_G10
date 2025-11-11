@@ -25,7 +25,6 @@ Unused terminals:
     DESP_DER_IGUAL
     DESP_IZQ_IGUAL
     DIFERENTE
-    DIV
     DIV_IGUAL
     DOSPUNTOS
     DYN
@@ -33,7 +32,6 @@ Unused terminals:
     ENUM
     FALSE
     FLECHA
-    FN
     FOR
     IF
     IGUAL
@@ -41,8 +39,6 @@ Unused terminals:
     IN
     INPUT
     INTERROGACION
-    LLAVE_DER
-    LLAVE_IZQ
     LOOP
     MAS_IGUAL
     MATCH
@@ -55,25 +51,19 @@ Unused terminals:
     MODULO
     MOD_IGUAL
     MOVE
-    MULT
     MUT
     NOT
     OR
     OR_IGUAL
-    PAREN_DER
-    PAREN_IZQ
     POR_IGUAL
     POTENCIA
-    PRINT
     PUB
     PUNTO
     REF
-    RESTA
     RETURN
     SELF
     STATIC
     STRUCT
-    SUMA
     SUPER
     TRAIT
     TRUE
@@ -86,30 +76,43 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> asignacion
-Rule 1     asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
-Rule 2     valor -> NUMERO
-Rule 3     valor -> CADENA
-Rule 4     valor -> CARACTER
-Rule 5     valor -> BOOLEANO
-Rule 6     expresion -> valor
+Rule 0     S' -> programa
+Rule 1     programa -> funcion
+Rule 2     programa -> programa funcion
+Rule 3     funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
+Rule 4     instrucciones -> instruccion
+Rule 5     instrucciones -> instrucciones instruccion
+Rule 6     instruccion -> asignacion
+Rule 7     instruccion -> imprimir
+Rule 8     asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+Rule 9     imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
+Rule 10    valor -> NUMERO
+Rule 11    valor -> CADENA
+Rule 12    valor -> CARACTER
+Rule 13    valor -> BOOLEANO
+Rule 14    expresion -> valor
+Rule 15    expresion -> expresion SUMA expresion
+Rule 16    expresion -> expresion RESTA expresion
+Rule 17    expresion -> expresion MULT expresion
+Rule 18    expresion -> expresion DIV expresion
+Rule 19    expresion -> IDENTIFICADOR
 
 Terminals, with rules where they appear
 
 AND                  : 
 AND_IGUAL            : 
 AS                   : 
-ASIGNACION           : 1
+ASIGNACION           : 8
 ASYNC                : 
 AWAIT                : 
 BIT_AND              : 
 BIT_NOT              : 
 BIT_OR               : 
 BIT_XOR              : 
-BOOLEANO             : 5
+BOOLEANO             : 13
 BREAK                : 
-CADENA               : 3
-CARACTER             : 4
+CADENA               : 11
+CARACTER             : 12
 COMA                 : 
 COMENTARIO_BLOQUE    : 
 COMENTARIO_LINEA     : 
@@ -123,7 +126,7 @@ DESPLAZAR_IZQ        :
 DESP_DER_IGUAL       : 
 DESP_IZQ_IGUAL       : 
 DIFERENTE            : 
-DIV                  : 
+DIV                  : 18
 DIV_IGUAL            : 
 DOSPUNTOS            : 
 DYN                  : 
@@ -131,18 +134,18 @@ ELSE                 :
 ENUM                 : 
 FALSE                : 
 FLECHA               : 
-FN                   : 
+FN                   : 3
 FOR                  : 
-IDENTIFICADOR        : 1
+IDENTIFICADOR        : 3 8 19
 IF                   : 
 IGUAL                : 
 IMPL                 : 
 IN                   : 
 INPUT                : 
 INTERROGACION        : 
-LET                  : 1
-LLAVE_DER            : 
-LLAVE_IZQ            : 
+LET                  : 8
+LLAVE_DER            : 3
+LLAVE_IZQ            : 3
 LOOP                 : 
 MAS_IGUAL            : 
 MATCH                : 
@@ -155,27 +158,27 @@ MOD                  :
 MODULO               : 
 MOD_IGUAL            : 
 MOVE                 : 
-MULT                 : 
+MULT                 : 17
 MUT                  : 
 NOT                  : 
-NUMERO               : 2
+NUMERO               : 10
 OR                   : 
 OR_IGUAL             : 
-PAREN_DER            : 
-PAREN_IZQ            : 
+PAREN_DER            : 3 9
+PAREN_IZQ            : 3 9
 POR_IGUAL            : 
 POTENCIA             : 
-PRINT                : 
+PRINT                : 9
 PUB                  : 
 PUNTO                : 
-PUNTOCOMA            : 1
+PUNTOCOMA            : 8 9
 REF                  : 
-RESTA                : 
+RESTA                : 16
 RETURN               : 
 SELF                 : 
 STATIC               : 
 STRUCT               : 
-SUMA                 : 
+SUMA                 : 15
 SUPER                : 
 TRAIT                : 
 TRUE                 : 
@@ -189,103 +192,563 @@ error                :
 
 Nonterminals, with rules where they appear
 
-asignacion           : 0
-expresion            : 1
-valor                : 6
+asignacion           : 6
+expresion            : 8 9 15 15 16 16 17 17 18 18
+funcion              : 1 2
+imprimir             : 7
+instruccion          : 4 5
+instrucciones        : 3 5
+programa             : 2 0
+valor                : 14
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . asignacion
-    (1) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (0) S' -> . programa
+    (1) programa -> . funcion
+    (2) programa -> . programa funcion
+    (3) funcion -> . FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
 
-    LET             shift and go to state 2
+    FN              shift and go to state 3
 
-    asignacion                     shift and go to state 1
+    programa                       shift and go to state 1
+    funcion                        shift and go to state 2
 
 state 1
 
-    (0) S' -> asignacion .
+    (0) S' -> programa .
+    (2) programa -> programa . funcion
+    (3) funcion -> . FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
 
+    FN              shift and go to state 3
 
+    funcion                        shift and go to state 4
 
 state 2
 
-    (1) asignacion -> LET . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (1) programa -> funcion .
 
-    IDENTIFICADOR   shift and go to state 3
+    FN              reduce using rule 1 (programa -> funcion .)
+    $end            reduce using rule 1 (programa -> funcion .)
 
 
 state 3
 
-    (1) asignacion -> LET IDENTIFICADOR . ASIGNACION expresion PUNTOCOMA
+    (3) funcion -> FN . IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
 
-    ASIGNACION      shift and go to state 4
+    IDENTIFICADOR   shift and go to state 5
 
 
 state 4
 
-    (1) asignacion -> LET IDENTIFICADOR ASIGNACION . expresion PUNTOCOMA
-    (6) expresion -> . valor
-    (2) valor -> . NUMERO
-    (3) valor -> . CADENA
-    (4) valor -> . CARACTER
-    (5) valor -> . BOOLEANO
+    (2) programa -> programa funcion .
 
-    NUMERO          shift and go to state 7
-    CADENA          shift and go to state 8
-    CARACTER        shift and go to state 9
-    BOOLEANO        shift and go to state 10
+    FN              reduce using rule 2 (programa -> programa funcion .)
+    $end            reduce using rule 2 (programa -> programa funcion .)
 
-    expresion                      shift and go to state 5
-    valor                          shift and go to state 6
 
 state 5
 
-    (1) asignacion -> LET IDENTIFICADOR ASIGNACION expresion . PUNTOCOMA
+    (3) funcion -> FN IDENTIFICADOR . PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
 
-    PUNTOCOMA       shift and go to state 11
+    PAREN_IZQ       shift and go to state 6
 
 
 state 6
 
-    (6) expresion -> valor .
+    (3) funcion -> FN IDENTIFICADOR PAREN_IZQ . PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER
 
-    PUNTOCOMA       reduce using rule 6 (expresion -> valor .)
+    PAREN_DER       shift and go to state 7
 
 
 state 7
 
-    (2) valor -> NUMERO .
+    (3) funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER . LLAVE_IZQ instrucciones LLAVE_DER
 
-    PUNTOCOMA       reduce using rule 2 (valor -> NUMERO .)
+    LLAVE_IZQ       shift and go to state 8
 
 
 state 8
 
-    (3) valor -> CADENA .
+    (3) funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ . instrucciones LLAVE_DER
+    (4) instrucciones -> . instruccion
+    (5) instrucciones -> . instrucciones instruccion
+    (6) instruccion -> . asignacion
+    (7) instruccion -> . imprimir
+    (8) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (9) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 3 (valor -> CADENA .)
+    LET             shift and go to state 13
+    PRINT           shift and go to state 14
 
+    instrucciones                  shift and go to state 9
+    instruccion                    shift and go to state 10
+    asignacion                     shift and go to state 11
+    imprimir                       shift and go to state 12
 
 state 9
 
-    (4) valor -> CARACTER .
+    (3) funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones . LLAVE_DER
+    (5) instrucciones -> instrucciones . instruccion
+    (6) instruccion -> . asignacion
+    (7) instruccion -> . imprimir
+    (8) asignacion -> . LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+    (9) imprimir -> . PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 4 (valor -> CARACTER .)
+    LLAVE_DER       shift and go to state 15
+    LET             shift and go to state 13
+    PRINT           shift and go to state 14
 
+    instruccion                    shift and go to state 16
+    asignacion                     shift and go to state 11
+    imprimir                       shift and go to state 12
 
 state 10
 
-    (5) valor -> BOOLEANO .
+    (4) instrucciones -> instruccion .
 
-    PUNTOCOMA       reduce using rule 5 (valor -> BOOLEANO .)
+    LLAVE_DER       reduce using rule 4 (instrucciones -> instruccion .)
+    LET             reduce using rule 4 (instrucciones -> instruccion .)
+    PRINT           reduce using rule 4 (instrucciones -> instruccion .)
 
 
 state 11
 
-    (1) asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .
+    (6) instruccion -> asignacion .
 
-    $end            reduce using rule 1 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+    LLAVE_DER       reduce using rule 6 (instruccion -> asignacion .)
+    LET             reduce using rule 6 (instruccion -> asignacion .)
+    PRINT           reduce using rule 6 (instruccion -> asignacion .)
 
+
+state 12
+
+    (7) instruccion -> imprimir .
+
+    LLAVE_DER       reduce using rule 7 (instruccion -> imprimir .)
+    LET             reduce using rule 7 (instruccion -> imprimir .)
+    PRINT           reduce using rule 7 (instruccion -> imprimir .)
+
+
+state 13
+
+    (8) asignacion -> LET . IDENTIFICADOR ASIGNACION expresion PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 17
+
+
+state 14
+
+    (9) imprimir -> PRINT . PAREN_IZQ expresion PAREN_DER PUNTOCOMA
+
+    PAREN_IZQ       shift and go to state 18
+
+
+state 15
+
+    (3) funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .
+
+    FN              reduce using rule 3 (funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+    $end            reduce using rule 3 (funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER .)
+
+
+state 16
+
+    (5) instrucciones -> instrucciones instruccion .
+
+    LLAVE_DER       reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    LET             reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+    PRINT           reduce using rule 5 (instrucciones -> instrucciones instruccion .)
+
+
+state 17
+
+    (8) asignacion -> LET IDENTIFICADOR . ASIGNACION expresion PUNTOCOMA
+
+    ASIGNACION      shift and go to state 19
+
+
+state 18
+
+    (9) imprimir -> PRINT PAREN_IZQ . expresion PAREN_DER PUNTOCOMA
+    (14) expresion -> . valor
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULT expresion
+    (18) expresion -> . expresion DIV expresion
+    (19) expresion -> . IDENTIFICADOR
+    (10) valor -> . NUMERO
+    (11) valor -> . CADENA
+    (12) valor -> . CARACTER
+    (13) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 22
+    NUMERO          shift and go to state 23
+    CADENA          shift and go to state 24
+    CARACTER        shift and go to state 25
+    BOOLEANO        shift and go to state 26
+
+    expresion                      shift and go to state 20
+    valor                          shift and go to state 21
+
+state 19
+
+    (8) asignacion -> LET IDENTIFICADOR ASIGNACION . expresion PUNTOCOMA
+    (14) expresion -> . valor
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULT expresion
+    (18) expresion -> . expresion DIV expresion
+    (19) expresion -> . IDENTIFICADOR
+    (10) valor -> . NUMERO
+    (11) valor -> . CADENA
+    (12) valor -> . CARACTER
+    (13) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 22
+    NUMERO          shift and go to state 23
+    CADENA          shift and go to state 24
+    CARACTER        shift and go to state 25
+    BOOLEANO        shift and go to state 26
+
+    expresion                      shift and go to state 27
+    valor                          shift and go to state 21
+
+state 20
+
+    (9) imprimir -> PRINT PAREN_IZQ expresion . PAREN_DER PUNTOCOMA
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULT expresion
+    (18) expresion -> expresion . DIV expresion
+
+    PAREN_DER       shift and go to state 28
+    SUMA            shift and go to state 29
+    RESTA           shift and go to state 30
+    MULT            shift and go to state 31
+    DIV             shift and go to state 32
+
+
+state 21
+
+    (14) expresion -> valor .
+
+    PAREN_DER       reduce using rule 14 (expresion -> valor .)
+    SUMA            reduce using rule 14 (expresion -> valor .)
+    RESTA           reduce using rule 14 (expresion -> valor .)
+    MULT            reduce using rule 14 (expresion -> valor .)
+    DIV             reduce using rule 14 (expresion -> valor .)
+    PUNTOCOMA       reduce using rule 14 (expresion -> valor .)
+
+
+state 22
+
+    (19) expresion -> IDENTIFICADOR .
+
+    PAREN_DER       reduce using rule 19 (expresion -> IDENTIFICADOR .)
+    SUMA            reduce using rule 19 (expresion -> IDENTIFICADOR .)
+    RESTA           reduce using rule 19 (expresion -> IDENTIFICADOR .)
+    MULT            reduce using rule 19 (expresion -> IDENTIFICADOR .)
+    DIV             reduce using rule 19 (expresion -> IDENTIFICADOR .)
+    PUNTOCOMA       reduce using rule 19 (expresion -> IDENTIFICADOR .)
+
+
+state 23
+
+    (10) valor -> NUMERO .
+
+    PAREN_DER       reduce using rule 10 (valor -> NUMERO .)
+    SUMA            reduce using rule 10 (valor -> NUMERO .)
+    RESTA           reduce using rule 10 (valor -> NUMERO .)
+    MULT            reduce using rule 10 (valor -> NUMERO .)
+    DIV             reduce using rule 10 (valor -> NUMERO .)
+    PUNTOCOMA       reduce using rule 10 (valor -> NUMERO .)
+
+
+state 24
+
+    (11) valor -> CADENA .
+
+    PAREN_DER       reduce using rule 11 (valor -> CADENA .)
+    SUMA            reduce using rule 11 (valor -> CADENA .)
+    RESTA           reduce using rule 11 (valor -> CADENA .)
+    MULT            reduce using rule 11 (valor -> CADENA .)
+    DIV             reduce using rule 11 (valor -> CADENA .)
+    PUNTOCOMA       reduce using rule 11 (valor -> CADENA .)
+
+
+state 25
+
+    (12) valor -> CARACTER .
+
+    PAREN_DER       reduce using rule 12 (valor -> CARACTER .)
+    SUMA            reduce using rule 12 (valor -> CARACTER .)
+    RESTA           reduce using rule 12 (valor -> CARACTER .)
+    MULT            reduce using rule 12 (valor -> CARACTER .)
+    DIV             reduce using rule 12 (valor -> CARACTER .)
+    PUNTOCOMA       reduce using rule 12 (valor -> CARACTER .)
+
+
+state 26
+
+    (13) valor -> BOOLEANO .
+
+    PAREN_DER       reduce using rule 13 (valor -> BOOLEANO .)
+    SUMA            reduce using rule 13 (valor -> BOOLEANO .)
+    RESTA           reduce using rule 13 (valor -> BOOLEANO .)
+    MULT            reduce using rule 13 (valor -> BOOLEANO .)
+    DIV             reduce using rule 13 (valor -> BOOLEANO .)
+    PUNTOCOMA       reduce using rule 13 (valor -> BOOLEANO .)
+
+
+state 27
+
+    (8) asignacion -> LET IDENTIFICADOR ASIGNACION expresion . PUNTOCOMA
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULT expresion
+    (18) expresion -> expresion . DIV expresion
+
+    PUNTOCOMA       shift and go to state 33
+    SUMA            shift and go to state 29
+    RESTA           shift and go to state 30
+    MULT            shift and go to state 31
+    DIV             shift and go to state 32
+
+
+state 28
+
+    (9) imprimir -> PRINT PAREN_IZQ expresion PAREN_DER . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 34
+
+
+state 29
+
+    (15) expresion -> expresion SUMA . expresion
+    (14) expresion -> . valor
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULT expresion
+    (18) expresion -> . expresion DIV expresion
+    (19) expresion -> . IDENTIFICADOR
+    (10) valor -> . NUMERO
+    (11) valor -> . CADENA
+    (12) valor -> . CARACTER
+    (13) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 22
+    NUMERO          shift and go to state 23
+    CADENA          shift and go to state 24
+    CARACTER        shift and go to state 25
+    BOOLEANO        shift and go to state 26
+
+    expresion                      shift and go to state 35
+    valor                          shift and go to state 21
+
+state 30
+
+    (16) expresion -> expresion RESTA . expresion
+    (14) expresion -> . valor
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULT expresion
+    (18) expresion -> . expresion DIV expresion
+    (19) expresion -> . IDENTIFICADOR
+    (10) valor -> . NUMERO
+    (11) valor -> . CADENA
+    (12) valor -> . CARACTER
+    (13) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 22
+    NUMERO          shift and go to state 23
+    CADENA          shift and go to state 24
+    CARACTER        shift and go to state 25
+    BOOLEANO        shift and go to state 26
+
+    expresion                      shift and go to state 36
+    valor                          shift and go to state 21
+
+state 31
+
+    (17) expresion -> expresion MULT . expresion
+    (14) expresion -> . valor
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULT expresion
+    (18) expresion -> . expresion DIV expresion
+    (19) expresion -> . IDENTIFICADOR
+    (10) valor -> . NUMERO
+    (11) valor -> . CADENA
+    (12) valor -> . CARACTER
+    (13) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 22
+    NUMERO          shift and go to state 23
+    CADENA          shift and go to state 24
+    CARACTER        shift and go to state 25
+    BOOLEANO        shift and go to state 26
+
+    expresion                      shift and go to state 37
+    valor                          shift and go to state 21
+
+state 32
+
+    (18) expresion -> expresion DIV . expresion
+    (14) expresion -> . valor
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULT expresion
+    (18) expresion -> . expresion DIV expresion
+    (19) expresion -> . IDENTIFICADOR
+    (10) valor -> . NUMERO
+    (11) valor -> . CADENA
+    (12) valor -> . CARACTER
+    (13) valor -> . BOOLEANO
+
+    IDENTIFICADOR   shift and go to state 22
+    NUMERO          shift and go to state 23
+    CADENA          shift and go to state 24
+    CARACTER        shift and go to state 25
+    BOOLEANO        shift and go to state 26
+
+    expresion                      shift and go to state 38
+    valor                          shift and go to state 21
+
+state 33
+
+    (8) asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .
+
+    LLAVE_DER       reduce using rule 8 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+    LET             reduce using rule 8 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+    PRINT           reduce using rule 8 (asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA .)
+
+
+state 34
+
+    (9) imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .
+
+    LLAVE_DER       reduce using rule 9 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
+    LET             reduce using rule 9 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
+    PRINT           reduce using rule 9 (imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA .)
+
+
+state 35
+
+    (15) expresion -> expresion SUMA expresion .
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULT expresion
+    (18) expresion -> expresion . DIV expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    PAREN_DER       reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    PUNTOCOMA       reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    SUMA            shift and go to state 29
+    RESTA           shift and go to state 30
+    MULT            shift and go to state 31
+    DIV             shift and go to state 32
+
+  ! SUMA            [ reduce using rule 15 (expresion -> expresion SUMA expresion .) ]
+  ! RESTA           [ reduce using rule 15 (expresion -> expresion SUMA expresion .) ]
+  ! MULT            [ reduce using rule 15 (expresion -> expresion SUMA expresion .) ]
+  ! DIV             [ reduce using rule 15 (expresion -> expresion SUMA expresion .) ]
+
+
+state 36
+
+    (16) expresion -> expresion RESTA expresion .
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULT expresion
+    (18) expresion -> expresion . DIV expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    PAREN_DER       reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    PUNTOCOMA       reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    SUMA            shift and go to state 29
+    RESTA           shift and go to state 30
+    MULT            shift and go to state 31
+    DIV             shift and go to state 32
+
+  ! SUMA            [ reduce using rule 16 (expresion -> expresion RESTA expresion .) ]
+  ! RESTA           [ reduce using rule 16 (expresion -> expresion RESTA expresion .) ]
+  ! MULT            [ reduce using rule 16 (expresion -> expresion RESTA expresion .) ]
+  ! DIV             [ reduce using rule 16 (expresion -> expresion RESTA expresion .) ]
+
+
+state 37
+
+    (17) expresion -> expresion MULT expresion .
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULT expresion
+    (18) expresion -> expresion . DIV expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    PAREN_DER       reduce using rule 17 (expresion -> expresion MULT expresion .)
+    PUNTOCOMA       reduce using rule 17 (expresion -> expresion MULT expresion .)
+    SUMA            shift and go to state 29
+    RESTA           shift and go to state 30
+    MULT            shift and go to state 31
+    DIV             shift and go to state 32
+
+  ! SUMA            [ reduce using rule 17 (expresion -> expresion MULT expresion .) ]
+  ! RESTA           [ reduce using rule 17 (expresion -> expresion MULT expresion .) ]
+  ! MULT            [ reduce using rule 17 (expresion -> expresion MULT expresion .) ]
+  ! DIV             [ reduce using rule 17 (expresion -> expresion MULT expresion .) ]
+
+
+state 38
+
+    (18) expresion -> expresion DIV expresion .
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULT expresion
+    (18) expresion -> expresion . DIV expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    PAREN_DER       reduce using rule 18 (expresion -> expresion DIV expresion .)
+    PUNTOCOMA       reduce using rule 18 (expresion -> expresion DIV expresion .)
+    SUMA            shift and go to state 29
+    RESTA           shift and go to state 30
+    MULT            shift and go to state 31
+    DIV             shift and go to state 32
+
+  ! SUMA            [ reduce using rule 18 (expresion -> expresion DIV expresion .) ]
+  ! RESTA           [ reduce using rule 18 (expresion -> expresion DIV expresion .) ]
+  ! MULT            [ reduce using rule 18 (expresion -> expresion DIV expresion .) ]
+  ! DIV             [ reduce using rule 18 (expresion -> expresion DIV expresion .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SUMA in state 35 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 35 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 35 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 35 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 36 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 36 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 36 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 36 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 37 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 37 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 37 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 37 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 38 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 38 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 38 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 38 resolved as shift

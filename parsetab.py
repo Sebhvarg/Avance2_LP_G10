@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND AND_IGUAL AS ASIGNACION ASYNC AWAIT BIT_AND BIT_NOT BIT_OR BIT_XOR BOOLEANO BREAK CADENA CARACTER COMA COMENTARIO_BLOQUE COMENTARIO_LINEA CONST CONTINUE CORCHETE_DER CORCHETE_IZQ CRATE DESPLAZAR_DER DESPLAZAR_IZQ DESP_DER_IGUAL DESP_IZQ_IGUAL DIFERENTE DIV DIV_IGUAL DOSPUNTOS DYN ELSE ENUM FALSE FLECHA FN FOR IDENTIFICADOR IF IGUAL IMPL IN INPUT INTERROGACION LET LLAVE_DER LLAVE_IZQ LOOP MAS_IGUAL MATCH MAYOR MAYOR_IGUAL MENOR MENOR_IGUAL MENOS_IGUAL MOD MODULO MOD_IGUAL MOVE MULT MUT NOT NUMERO OR OR_IGUAL PAREN_DER PAREN_IZQ POR_IGUAL POTENCIA PRINT PUB PUNTO PUNTOCOMA REF RESTA RETURN SELF STATIC STRUCT SUMA SUPER TRAIT TRUE TYPE UNSAFE USE WHERE WHILE XOR_IGUALasignacion : LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMAvalor : NUMERO\n| CADENA\n| CARACTER\n| BOOLEANOexpresion : valor'
+_lr_signature = 'programaAND AND_IGUAL AS ASIGNACION ASYNC AWAIT BIT_AND BIT_NOT BIT_OR BIT_XOR BOOLEANO BREAK CADENA CARACTER COMA COMENTARIO_BLOQUE COMENTARIO_LINEA CONST CONTINUE CORCHETE_DER CORCHETE_IZQ CRATE DESPLAZAR_DER DESPLAZAR_IZQ DESP_DER_IGUAL DESP_IZQ_IGUAL DIFERENTE DIV DIV_IGUAL DOSPUNTOS DYN ELSE ENUM FALSE FLECHA FN FOR IDENTIFICADOR IF IGUAL IMPL IN INPUT INTERROGACION LET LLAVE_DER LLAVE_IZQ LOOP MAS_IGUAL MATCH MAYOR MAYOR_IGUAL MENOR MENOR_IGUAL MENOS_IGUAL MOD MODULO MOD_IGUAL MOVE MULT MUT NOT NUMERO OR OR_IGUAL PAREN_DER PAREN_IZQ POR_IGUAL POTENCIA PRINT PUB PUNTO PUNTOCOMA REF RESTA RETURN SELF STATIC STRUCT SUMA SUPER TRAIT TRUE TYPE UNSAFE USE WHERE WHILE XOR_IGUALprograma : funcion\n| programa funcionfuncion : FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DERinstrucciones : instruccion\n| instrucciones instruccioninstruccion : asignacion\n| imprimirasignacion : LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMAimprimir : PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMAvalor : NUMERO\n| CADENA\n| CARACTER\n| BOOLEANOexpresion : valorexpresion : expresion SUMA expresion\n| expresion RESTA expresion\n| expresion MULT expresion\n| expresion DIV expresionexpresion : IDENTIFICADOR'
     
-_lr_action_items = {'LET':([0,],[2,]),'$end':([1,11,],[0,-1,]),'IDENTIFICADOR':([2,],[3,]),'ASIGNACION':([3,],[4,]),'NUMERO':([4,],[7,]),'CADENA':([4,],[8,]),'CARACTER':([4,],[9,]),'BOOLEANO':([4,],[10,]),'PUNTOCOMA':([5,6,7,8,9,10,],[11,-6,-2,-3,-4,-5,]),}
+_lr_action_items = {'FN':([0,1,2,4,15,],[3,3,-1,-2,-3,]),'$end':([1,2,4,15,],[0,-1,-2,-3,]),'IDENTIFICADOR':([3,13,18,19,29,30,31,32,],[5,17,22,22,22,22,22,22,]),'PAREN_IZQ':([5,14,],[6,18,]),'PAREN_DER':([6,20,21,22,23,24,25,26,35,36,37,38,],[7,28,-14,-19,-10,-11,-12,-13,-15,-16,-17,-18,]),'LLAVE_IZQ':([7,],[8,]),'LET':([8,9,10,11,12,16,33,34,],[13,13,-4,-6,-7,-5,-8,-9,]),'PRINT':([8,9,10,11,12,16,33,34,],[14,14,-4,-6,-7,-5,-8,-9,]),'LLAVE_DER':([9,10,11,12,16,33,34,],[15,-4,-6,-7,-5,-8,-9,]),'ASIGNACION':([17,],[19,]),'NUMERO':([18,19,29,30,31,32,],[23,23,23,23,23,23,]),'CADENA':([18,19,29,30,31,32,],[24,24,24,24,24,24,]),'CARACTER':([18,19,29,30,31,32,],[25,25,25,25,25,25,]),'BOOLEANO':([18,19,29,30,31,32,],[26,26,26,26,26,26,]),'SUMA':([20,21,22,23,24,25,26,27,35,36,37,38,],[29,-14,-19,-10,-11,-12,-13,29,29,29,29,29,]),'RESTA':([20,21,22,23,24,25,26,27,35,36,37,38,],[30,-14,-19,-10,-11,-12,-13,30,30,30,30,30,]),'MULT':([20,21,22,23,24,25,26,27,35,36,37,38,],[31,-14,-19,-10,-11,-12,-13,31,31,31,31,31,]),'DIV':([20,21,22,23,24,25,26,27,35,36,37,38,],[32,-14,-19,-10,-11,-12,-13,32,32,32,32,32,]),'PUNTOCOMA':([21,22,23,24,25,26,27,28,35,36,37,38,],[-14,-19,-10,-11,-12,-13,33,34,-15,-16,-17,-18,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'asignacion':([0,],[1,]),'expresion':([4,],[5,]),'valor':([4,],[6,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'funcion':([0,1,],[2,4,]),'instrucciones':([8,],[9,]),'instruccion':([8,9,],[10,16,]),'asignacion':([8,9,],[11,11,]),'imprimir':([8,9,],[12,12,]),'expresion':([18,19,29,30,31,32,],[20,27,35,36,37,38,]),'valor':([18,19,29,30,31,32,],[21,21,21,21,21,21,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,11 +26,24 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> asignacion","S'",1,None,None,None),
-  ('asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA','asignacion',5,'p_asignacion','main.py',27),
-  ('valor -> NUMERO','valor',1,'p_valor','main.py',31),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',32),
-  ('valor -> CARACTER','valor',1,'p_valor','main.py',33),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',34),
-  ('expresion -> valor','expresion',1,'p_expresion','main.py',39),
+  ("S' -> programa","S'",1,None,None,None),
+  ('programa -> funcion','programa',1,'p_programa','main.py',27),
+  ('programa -> programa funcion','programa',2,'p_programa','main.py',28),
+  ('funcion -> FN IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER','funcion',7,'p_funcion','main.py',39),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones','main.py',43),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones','main.py',44),
+  ('instruccion -> asignacion','instruccion',1,'p_instruccion','main.py',51),
+  ('instruccion -> imprimir','instruccion',1,'p_instruccion','main.py',52),
+  ('asignacion -> LET IDENTIFICADOR ASIGNACION expresion PUNTOCOMA','asignacion',5,'p_asignacion','main.py',56),
+  ('imprimir -> PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA','imprimir',5,'p_imprimir','main.py',60),
+  ('valor -> NUMERO','valor',1,'p_valor','main.py',64),
+  ('valor -> CADENA','valor',1,'p_valor','main.py',65),
+  ('valor -> CARACTER','valor',1,'p_valor','main.py',66),
+  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',67),
+  ('expresion -> valor','expresion',1,'p_expresion','main.py',71),
+  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_binaria','main.py',75),
+  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_binaria','main.py',76),
+  ('expresion -> expresion MULT expresion','expresion',3,'p_expresion_binaria','main.py',77),
+  ('expresion -> expresion DIV expresion','expresion',3,'p_expresion_binaria','main.py',78),
+  ('expresion -> IDENTIFICADOR','expresion',1,'p_expresion_identificador','main.py',82),
 ]
