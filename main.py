@@ -88,27 +88,33 @@ def p_expresion_identificador(p):
 # ==========================================================
 # ------------------ Sebastian Holguin ------------------
 
+# Instrucción de impresión
 def p_imprimir(p):
     'imprimir : PRINT PAREN_IZQ expresion PAREN_DER PUNTOCOMA'
     p[0] = ('imprimir', p[3])
     
+# Expresiones con paréntesis
 def p_expresion_parentesis(p):
     'expresion : PAREN_IZQ expresion PAREN_DER'
     p[0] = p[2]
+
+# Expresiones aritméticas
 def p_expresion_aritmetica(p):
     '''expresion : expresion operador termino'''
     # Regla izquierda-recursiva que permite encadenar una o más operaciones aritméticas
     # Ejemplo: 1 + 2 + 3 -> ('operacion_aritmetica', '+', ('operacion_aritmetica', '+', 1, 2), 3)
     p[0] = ('operacion_aritmetica', p[2], p[1], p[3])
 
-
+# Operadores aritméticos
 def p_operador(p):
     '''operador : SUMA
                 | RESTA
                 | MULT
-                | DIV'''
+                | DIV
+                | MODULO'''
     p[0] = p[1]
 
+# Términos en expresiones aritméticas
 def p_termino(p):
     '''termino : valor
                | IDENTIFICADOR
@@ -118,6 +124,8 @@ def p_termino(p):
         p[0] = p[1]
     else:
         p[0] = p[2]
+
+# Expresiones booleanas con AND, OR, NOT
 def p_expresion_booleana(p):
     '''expresion : expresion AND expresion
                  | expresion OR expresion
@@ -127,6 +135,7 @@ def p_expresion_booleana(p):
     else:
         p[0] = ('operacion_booleana', p[1], p[2])
 
+# Expresiones relacionales (comparaciones)
 def p_expresion_relacional(p):
     '''expresion : expresion MENOR expresion
                  | expresion MAYOR expresion
@@ -134,7 +143,17 @@ def p_expresion_relacional(p):
                  | expresion MAYOR_IGUAL expresion
                  | expresion IGUAL expresion
                  | expresion DIFERENTE expresion'''
-    p[0] = ('operacion_relacional', p[2], p[1], p[3])  
+    p[0] = ('operacion_relacional', p[2], p[1], p[3])
+
+# Condicionales anidados (if-else if-else) - sin duplicar las reglas básicas de Derian
+def p_condicional_elif(p):
+    'instruccion : IF PAREN_IZQ expresion PAREN_DER LLAVE_IZQ instrucciones LLAVE_DER ELSE instruccion'
+    p[0] = ('condicional_elif', p[3], p[6], p[9])
+
+# Expresión ternaria (condicion ? valor_si_true : valor_si_false)
+def p_expresion_ternaria(p):
+    'expresion : expresion INTERROGACION expresion DOSPUNTOS expresion'
+    p[0] = ('expresion_ternaria', p[1], p[3], p[5])  
 
 
 # ------------------ Fin  Sebastian Holguin ---------------
@@ -291,21 +310,40 @@ def p_error(p):
     if p is None:
         # fin de entrada inesperado
         msg = "Error de sintaxis: fin de entrada inesperado"
+        last_syntax_error = msg
+        syntax_errors.append(msg)
+        try:
+            print(msg)
+            if log_file_path:
+                with open(log_file_path, 'a', encoding='utf-8') as lf:
+                    lf.write(msg + "\n")
+        except Exception:
+            pass
     else:
         lineno = getattr(p, 'lineno', 'desconocida')
         msg = f"Error de sintaxis en la línea {lineno}: token={p.type} valor={p.value}"
-    # No imprimir aquí: sólo acumular el error para reportar tras el parseo
-    last_syntax_error = msg
-    syntax_errors.append(msg)
-    # Mostrar inmediatamente en consola y escribir en el archivo de log si está definido
-    try:
-        print(msg)
-        if log_file_path:
-            with open(log_file_path, 'a', encoding='utf-8') as lf:
-                lf.write(msg + "\n")
-    except Exception:
-        # No detener el parser por errores al escribir en el log
-        pass
+        last_syntax_error = msg
+        syntax_errors.append(msg)
+        # Mostrar inmediatamente en consola y escribir en el archivo de log si está definido
+        try:
+            print(msg)
+            if log_file_path:
+                with open(log_file_path, 'a', encoding='utf-8') as lf:
+                    lf.write(msg + "\n")
+        except Exception:
+            pass
+        
+        # Estrategia de recuperación: descartar tokens hasta encontrar un punto de sincronización
+        # Puntos de sincronización: punto y coma (;), llave derecha (})
+        while True:
+            tok = parser.token()  # Obtener el siguiente token
+            if not tok:
+                break  # Fin de entrada
+            # Si encontramos un punto de sincronización, reiniciar el parser
+            if tok.type in ('PUNTOCOMA', 'LLAVE_DER'):
+                parser.errok()
+                return tok
+            # Continuar descartando tokens
 
 
 # ------------------------------------------------------------
