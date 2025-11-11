@@ -74,7 +74,8 @@ reservadas = {
     'static': 'STATIC', 'match': 'MATCH', 'loop': 'LOOP', 'in': 'IN',
     'where': 'WHERE', 'move': 'MOVE', 'ref': 'REF', 'type': 'TYPE',
     'crate': 'CRATE', 'unsafe': 'UNSAFE', 'async': 'ASYNC', 'await': 'AWAIT',
-    'dyn': 'DYN'
+    'dyn': 'DYN', 'class': 'CLASS',
+
     }
     # ---------------- Fin Carlos ----------------
 

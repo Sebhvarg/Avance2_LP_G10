@@ -1,0 +1,6 @@
+Error de sintaxis en la línea 1: token=CLASS valor=class
+Error de sintaxis en la línea 12: token=LLAVE_DER valor=}
+Resultado del análisis sintáctico:
+Errores sintácticos:
+Error de sintaxis en la línea 1: token=CLASS valor=class
+Error de sintaxis en la línea 12: token=LLAVE_DER valor=}

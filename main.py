@@ -267,6 +267,11 @@ def p_uso_clase(p):
     '''
     print(f"Uso de clase '{p[1]}': llamada al método '{p[3]}'()")
 
+def p_empty(p):
+    'empty :'
+    p[0] = None
+
+
 # ============================================================
 # Fin: Reglas Sintácticas - Aporte de Carlos Ronquillo (Avance 2)
 # ============================================================
