@@ -6,6 +6,7 @@
 # Integrantes:
 #   Derian Baque Choez (fernan0502)
 #   Sebastian Holguin (Sebhvarg)
+#   Carlos Ronquillo (carrbrus)
 # ------------------------------------------------------------
 import ply.lex as lex
 import datetime
@@ -18,27 +19,29 @@ import sys
 # ------------------------------------------------------------
 tokens = [
     # ---------------- Aporte Fernando, Sebastian ----------------
-    'IDENTIFICADOR', 'NUMERO', 'CADENA',
-    'ASIGNACION', 'SUMA', 'RESTA', 'MULT', 'DIV',
+    'IDENTIFICADOR', 'ENTERO', 'CADENA', 'FLOTANTE',
+    'IGUAL', 'SUMA', 'RESTA', 'MULT', 'DIV',
     'PAREN_IZQ', 'PAREN_DER', 'LLAVE_IZQ', 'LLAVE_DER',
-    'PUNTOCOMA', 'PUNTO', 'MODULO', 'POTENCIA',
-    'MENOR', 'COMA', 'DOSPUNTOS', 'CARACTER', 'BOOLEANO', 'ENTERO', 'FLOTANTE',
+    'PUNTOCOMA', 'PUNTO', 'POTENCIA',
+    'MENOR', 'COMA', 'DOSPUNTOS', 'CARACTER', 'BOOLEANO',
+    'IGUALDOBLE',
     # Comentarios
     'COMENTARIO_LINEA', 'COMENTARIO_BLOQUE',
     #Operadores Relacionales y Lógicos
-    'MAYOR', 'MAYOR_IGUAL', 'MENOR_IGUAL', 'IGUAL', 'DIFERENTE',
-    'AND', 'OR', 'NOT',
+    'MAYOR', 'MAYOR_IGUAL', 'MENOR_IGUAL', 'DIFERENTE',
+    'Y', 'O', 'NO', 
     #Otros simbolos
     'CORCHETE_IZQ', 'CORCHETE_DER',  'FLECHA', 'INTERROGACION',
+    'RANGO', 'RANGO_INCLUIDO',
 
     # ---------------- Fin Fernando, Sebastian -------------------
 
     # ---------------- Aporte Carlos ----------------
     # Operadores bit a bit
-    'BIT_AND',         # &
-    'BIT_OR',          # |
-    'BIT_XOR',         # ^
-    'BIT_NOT',         # ~
+    'BIT_Y',         # &
+    'BIT_O',          # |
+    'BIT_XO',         # ^
+    'BIT_NO',         # ~
     'DESPLAZAR_IZQ',   # <<
     'DESPLAZAR_DER',   # >>
 
@@ -48,34 +51,32 @@ tokens = [
     'POR_IGUAL',       # *=
     'DIV_IGUAL',       # /=
     'MOD_IGUAL',       # %=
-    'AND_IGUAL',       # &=
-    'OR_IGUAL',        # |=
-    'XOR_IGUAL',       # ^=
+    'Y_IGUAL',       # &=
+    'O_IGUAL',        # |=
+    'XO_IGUAL',       # ^=
     'DESP_IZQ_IGUAL',  # <<=
     'DESP_DER_IGUAL',  # >>=
     # ---------------- Fin Carlos ----------------
-    
 
     ]
     
 reservadas = {
     # -------- Aporte Fernando, Sebastian --------
-    'if': 'IF', 'else': 'ELSE', 'for': 'FOR', 'while': 'WHILE',
-    'fn': 'FUNCTION', 'return': 'RETURN', 'let': 'VAR',
-    'const': 'CONST', 'true': 'TRUE', 'false': 'FALSE',
-    'break': 'BREAK', 'print': 'PRINT', 'input': 'INPUT', 
-    'continue': 'CONTINUE', 
+    'if': 'SI', 'else': 'SINO', 'for': 'POR', 'while': 'MIENTRAS',
+    'fn': 'FUNCION', 'return': 'RETORNO', 'let': 'VARIABLE',
+    'const': 'CONSTANTE', 'true': 'VERDAD', 'false': 'FALSO',
+    'break': 'QUIEBRE', 'print': 'IMPRIMIR', 'input': 'ENTRADA',
+    'continue': 'CONTINUAR', 'println': 'IMPRIMIRLN',
      # ---------------- Fin Fernando, Sebastian -------------------
     
      # ---------------- Aporte Carlos ----------------
-    'let': 'LET', 'mut': 'MUT', 'fn': 'FN', 'struct': 'STRUCT', 'enum': 'ENUM',
-    'impl': 'IMPL', 'trait': 'TRAIT', 'mod': 'MOD', 'use': 'USE',
-    'pub': 'PUB', 'self': 'SELF', 'super': 'SUPER', 'as': 'AS', 'const': 'CONST',
-    'static': 'STATIC', 'match': 'MATCH', 'loop': 'LOOP', 'in': 'IN',
-    'where': 'WHERE', 'move': 'MOVE', 'ref': 'REF', 'type': 'TYPE',
-    'crate': 'CRATE', 'unsafe': 'UNSAFE', 'async': 'ASYNC', 'await': 'AWAIT',
-    'dyn': 'DYN', 'class': 'CLASS',
-
+    'mut': 'MUTABLE', 'struct': 'ESTRUCTURA', 'enum': 'ENUMERADO',
+    'impl': 'IMPLEMENTACION', 'trait': 'RASGO', 'mod': 'MODULO', 'use': 'USO',
+    'pub': 'PUBLICO', 'self': 'MISMO', 'super': 'SUPER', 'as': 'COMO',
+    'static': 'ESTATICO', 'match': 'COINCIDIR', 'loop': 'LAZO', 'in': 'EN',
+    'where': 'DONDE', 'move': 'MOVER', 'ref': 'REFERENCIA', 'type': 'TIPO',
+    'crate': 'PAQUETE', 'unsafe': 'INSEGURO', 'async': 'ASINCRONO', 'await': 'ESPERAR',
+    'dyn': 'DINAMICO', 'class': 'CLASE',
     }
     # ---------------- Fin Carlos ----------------
 
@@ -85,7 +86,7 @@ tokens = tokens + list(reservadas.values())
 # Expresiones regulares para tokens simples
 # ------------------------------------------------------------
 # -------- Aporte Fernando --------
-t_ASIGNACION = r'='
+t_IGUAL = r'='
 t_SUMA       = r'\+'
 t_RESTA      = r'-'
 t_MULT       = r'\*'
@@ -108,17 +109,18 @@ t_DOSPUNTOS  = r':'
 t_MAYOR      = r'>'
 t_MAYOR_IGUAL  = r'>='
 t_MENOR_IGUAL  = r'<='
-t_IGUAL        = r'=='
+t_IGUALDOBLE   = r'=='
 t_DIFERENTE    = r'!='
-t_AND          = r'&&'
-t_OR           = r'\|\|'
-t_NOT          = r'!'
+t_Y          = r'&&'
+t_O           = r'\|\|'
+t_NO          = r'!'
 t_CORCHETE_IZQ = r'\['
 t_CORCHETE_DER = r'\]'
 t_FLECHA       = r'->'
 t_INTERROGACION= r'\?'
-t_FN          = r'fn'
-t_LET        = r'let'
+t_RANGO        = r'\.\.'
+t_RANGO_INCLUIDO = r'\.\.='
+
 #--------- Fin Sebastian --------
 
 # -------- Aporte Carlos --------
@@ -128,19 +130,19 @@ t_MENOS_IGUAL    = r'-='
 t_POR_IGUAL      = r'\*='
 t_DIV_IGUAL      = r'/='
 t_MOD_IGUAL      = r'%='
-t_AND_IGUAL      = r'&='
-t_OR_IGUAL       = r'\|='
-t_XOR_IGUAL      = r'\^='
+t_Y_IGUAL      = r'&='
+t_O_IGUAL       = r'\|='
+t_XO_IGUAL      = r'\^='
 t_DESP_IZQ_IGUAL = r'<<='
 t_DESP_DER_IGUAL = r'>>='
 
 # Operadores bit a bit
 t_DESPLAZAR_IZQ  = r'<<'
 t_DESPLAZAR_DER  = r'>>'
-t_BIT_AND        = r'&'
-t_BIT_OR         = r'\|'
-t_BIT_XOR        = r'\^'
-t_BIT_NOT        = r'~'
+t_BIT_Y        = r'&'
+t_BIT_O         = r'\|'
+t_BIT_XO        = r'\^'
+t_BIT_NO        = r'~'
 # -------- Fin Carlos --------
 
 
@@ -159,8 +161,6 @@ def t_IDENTIFICADOR(t):
     r'[a-zA-ZáéíóúÁÉÍÓÚñÑ_][a-zA-Z0-9áéíóúÁÉÍÓÚñÑ_]*'
     t.type = reservadas.get(t.value, 'IDENTIFICADOR')
     return t
-
-# Aporte Carlos (separar t_NUMERO en t_FLOTANTE y t_ENTERO)
 def t_FLOTANTE(t):
     r'\d+\.\d+'
     t.value = float(t.value)
@@ -170,8 +170,6 @@ def t_ENTERO(t):
     r'\d+'
     t.value = int(t.value)
     return t
-
-# Fin aporte Carlos
 
 def t_CADENA(t):
     r'\"([^\\\n]|(\\.))*?\"'
