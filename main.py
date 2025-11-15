@@ -140,6 +140,11 @@ def p_imprimir(p):
     '''imprimir : IMPRIMIR PAREN_IZQ repite_valores PAREN_DER PUNTOCOMA
     | IMPRIMIRLN PAREN_IZQ repite_valores PAREN_DER PUNTOCOMA
     '''
+
+def p_imprimir_sin_puntocoma(p):
+    '''imprimir_sin_puntocoma : IMPRIMIR PAREN_IZQ repite_valores PAREN_DER
+                              | IMPRIMIRLN PAREN_IZQ repite_valores PAREN_DER
+    '''
     
 def p_repite_valores(p):
     '''repite_valores : valor
@@ -310,13 +315,33 @@ def p_continue_break(p):
     '''
 
 def p_match_case(p):
-    '''match_case : SWITCH PAREN_IZQ IDENTIFICADOR PAREN_DER LLAVE_IZQ casos DEFECTO DOSPUNTOS LLAVE_IZQ programa LLAVE_DER LLAVE_DER
-                  | SWITCH PAREN_IZQ IDENTIFICADOR PAREN_DER LLAVE_IZQ casos LLAVE_DER
+    '''match_case : COINCIDIR IDENTIFICADOR LLAVE_IZQ brazos_match LLAVE_DER
+                  | COINCIDIR IDENTIFICADOR LLAVE_IZQ brazos_match COMA LLAVE_DER
     '''
 
-def p_casos(p):
-    '''casos : CASO valor DOSPUNTOS LLAVE_IZQ programa LLAVE_DER
-             | CASO valor DOSPUNTOS LLAVE_IZQ programa LLAVE_DER casos
+def p_brazos_match(p):
+    '''brazos_match : brazo_match
+                    | brazos_match COMA brazo_match
+    '''
+
+def p_brazo_match(p):
+    '''brazo_match : patron FLECHA_DOBLE expresion_match
+                   | patron FLECHA_DOBLE bloque_match
+    '''
+
+def p_bloque_match(p):
+    '''bloque_match : LLAVE_IZQ programa LLAVE_DER
+    '''
+
+def p_patron(p):
+    '''patron : valor
+              | GUION_BAJO
+    '''
+
+def p_expresion_match(p):
+    '''expresion_match : llamada_funcion_sin_puntocoma
+                       | imprimir_sin_puntocoma
+                       | valor
     '''
 
 
@@ -370,12 +395,10 @@ def p_error(p):
         mensaje_error += f"palabra reservada 'fn' inesperada. Revise la sintaxis de la función"
     elif token_type in ['SI', 'SINO', 'MIENTRAS', 'POR']:
         mensaje_error += f"palabra reservada '{token_value}' en posición incorrecta. Revise la estructura de control"
-    elif token_type == 'SWITCH':
-        mensaje_error += f"palabra reservada 'switch' inesperada. Revise la sintaxis del match/case"
-    elif token_type == 'CASO':
-        mensaje_error += f"palabra reservada 'case' inesperada. Debe estar dentro de un bloque switch"
-    elif token_type == 'DEFECTO':
-        mensaje_error += f"palabra reservada 'default' inesperada. Debe estar dentro de un bloque switch"
+    elif token_type == 'COINCIDIR':
+        mensaje_error += f"palabra reservada 'match' inesperada. Revise la sintaxis del match"
+    elif token_type == 'FLECHA_DOBLE':
+        mensaje_error += f"operador '=>' inesperado. Solo puede usarse dentro de expresiones match"
     elif token_type == 'RETORNO':
         mensaje_error += f"palabra reservada 'return' inesperada. Solo puede usarse dentro de funciones"
     elif token_type in ['CONTINUAR', 'QUIEBRE']:

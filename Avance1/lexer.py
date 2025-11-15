@@ -56,6 +56,8 @@ tokens = [
     'XO_IGUAL',       # ^=
     'DESP_IZQ_IGUAL',  # <<=
     'DESP_DER_IGUAL',  # >>=
+    'FLECHA_DOBLE',  # =>
+    'GUION_BAJO',  # _
     # ---------------- Fin Carlos ----------------
 
     ]
@@ -112,6 +114,7 @@ t_POTENCIA   = r'\^'
 t_MENOR      = r'<'
 t_COMA       = r','
 t_DOSPUNTOS  = r':'
+
 # -------- Fin Fernando --------
 
 
@@ -130,7 +133,8 @@ t_FLECHA       = r'->'
 t_INTERROGACION= r'\?'
 t_RANGO        = r'\.\.'
 t_RANGO_INCLUIDO = r'\.\.='
-
+t_FLECHA_DOBLE = r'=>'
+t_GUION_BAJO = r'_'
 #--------- Fin Sebastian --------
 
 # Reglas especiales para macros de impresión (antes de t_IDENTIFICADOR y t_NO)

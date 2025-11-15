@@ -1,0 +1,5 @@
+Inicio análisis sintáctico del archivo: ./test/test_switch.rs
+Error sintáctico en la línea 5: valor entero '2' inesperado. Revise la expresión o asignación
+Error sintáctico en la línea 5: coma ',' inesperada. Revise la lista de parámetros o valores
+Error sintáctico en la línea 6: coma ',' inesperada. Revise la lista de parámetros o valores
+Error sintáctico en la línea 7: coma ',' inesperada. Revise la lista de parámetros o valores

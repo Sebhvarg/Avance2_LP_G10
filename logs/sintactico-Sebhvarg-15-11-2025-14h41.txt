@@ -1,0 +1,4 @@
+Inicio análisis sintáctico del archivo: .\test\test_switch.rs
+Error sintáctico en la línea 8: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Inicio análisis sintáctico del archivo: .\test\test_switch.rs
+Análisis sintáctico completado sin errores.
