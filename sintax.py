@@ -279,6 +279,7 @@ def p_estructura_control(p):
     '''estructura_control : condicional_if
                          | ciclo_while
                          | ciclo_for
+                         | match_case
     '''
 
 def p_condicional_if(p):
@@ -303,6 +304,23 @@ def p_asignacion_incremento(p):
                                 | IDENTIFICADOR IGUAL IDENTIFICADOR SUMA ENTERO
                 
     '''
+def p_continue_break(p):
+    '''instrucciones : CONTINUAR PUNTOCOMA
+                    | QUIEBRE PUNTOCOMA
+    '''
+
+def p_match_case(p):
+    '''match_case : SWITCH PAREN_IZQ IDENTIFICADOR PAREN_DER LLAVE_IZQ casos DEFECTO DOSPUNTOS LLAVE_IZQ programa LLAVE_DER LLAVE_DER
+                  | SWITCH PAREN_IZQ IDENTIFICADOR PAREN_DER LLAVE_IZQ casos LLAVE_DER
+    '''
+
+def p_casos(p):
+    '''casos : CASO valor DOSPUNTOS LLAVE_IZQ programa LLAVE_DER
+             | CASO valor DOSPUNTOS LLAVE_IZQ programa LLAVE_DER casos
+    '''
+
+
+
 # ------------------------------------------------------------
     
 # Error rule for syntax errors
@@ -352,8 +370,16 @@ def p_error(p):
         mensaje_error += f"palabra reservada 'fn' inesperada. Revise la sintaxis de la función"
     elif token_type in ['SI', 'SINO', 'MIENTRAS', 'POR']:
         mensaje_error += f"palabra reservada '{token_value}' en posición incorrecta. Revise la estructura de control"
+    elif token_type == 'SWITCH':
+        mensaje_error += f"palabra reservada 'switch' inesperada. Revise la sintaxis del match/case"
+    elif token_type == 'CASO':
+        mensaje_error += f"palabra reservada 'case' inesperada. Debe estar dentro de un bloque switch"
+    elif token_type == 'DEFECTO':
+        mensaje_error += f"palabra reservada 'default' inesperada. Debe estar dentro de un bloque switch"
     elif token_type == 'RETORNO':
         mensaje_error += f"palabra reservada 'return' inesperada. Solo puede usarse dentro de funciones"
+    elif token_type in ['CONTINUAR', 'QUIEBRE']:
+        mensaje_error += f"palabra reservada '{token_value}' inesperada. Solo puede usarse dentro de ciclos"
     elif token_type == 'ESTRUCTURA':
         mensaje_error += f"palabra reservada 'struct' inesperada. Revise la sintaxis de la clase"
     
