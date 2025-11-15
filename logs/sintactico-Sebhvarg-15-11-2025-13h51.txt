@@ -1,0 +1,6 @@
+Inicio análisis sintáctico del archivo: ./test/algoritmo3.rs
+Error sintáctico al final del archivo
+Inicio análisis sintáctico del archivo: .\test\algoritmo3.rs
+Error sintáctico al final del archivo
+Inicio análisis sintáctico del archivo: .\test\algoritmo3.rs
+Análisis sintáctico completado sin errores.

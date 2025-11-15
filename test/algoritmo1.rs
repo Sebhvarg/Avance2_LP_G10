@@ -1,21 +1,23 @@
 fn main() {
-    print("Hello, world!");
-    let x = 5
-    let y = 10;
-    let z = x + y - 3;
-    lit e = x && y;
-    print(x};
-    let o + 67;
-    x = y && z ;
-    if x > y {
-        print("x is greater than y");
-    }  ()
-        print("x is not greater than y");
-    }
+    println!("Hello, world!");
+    let x = 5;
+    let mut l = 5;
+    println!("The value of x is: {x}");
+    x = 6;
+    println!("The value of x is: {x}");
 
-    iff x > y {
-        print("x is greater than y");
+    let y = 10;
+    if (x < y) {
+        println!("x is less than y");
+    } else if (x == y) {
+        println!("x is equal to y");
     } else {
-        print("x is not greater than y");
+        println!("x is greater than y");
+    }
+    while (x < 20) {
+        x = x + 1;
+    }
+    for (i = 0; i < 10; i++) {
+        println!(i);
     }
 }

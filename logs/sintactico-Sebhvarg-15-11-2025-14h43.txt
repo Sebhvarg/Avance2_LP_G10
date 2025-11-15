@@ -1,0 +1,8 @@
+Inicio análisis sintáctico del archivo: .\test\test_match_completo.rs
+Análisis sintáctico completado sin errores.
+Inicio análisis sintáctico del archivo: .\test\test_match_errores.rs
+Error sintáctico en la línea 8: token inesperado 'println!' de tipo IMPRIMIRLN
+Error sintáctico en la línea 8: coma ',' inesperada. Revise la lista de parámetros o valores
+Error sintáctico en la línea 9: coma ',' inesperada. Revise la lista de parámetros o valores
+Error sintáctico en la línea 14: coma ',' inesperada. Revise la lista de parámetros o valores
+Error sintáctico en la línea 22: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada

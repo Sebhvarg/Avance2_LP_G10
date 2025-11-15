@@ -1,0 +1,2 @@
+Inicio análisis sintáctico del archivo: ./test/algoritmo3.rs
+Análisis sintáctico completado sin errores.
