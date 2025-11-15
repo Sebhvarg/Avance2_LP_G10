@@ -1,15 +1,23 @@
-# Yacc example
+# ------------------------------------------------------------ 
+# parser.py
+# Analizador Sintáctico usando PLY.Yacc
+# Grupo 10
+# ------------------------------------------------------------
 
 import ply.yacc as yacc
 import sys
 import datetime
 import os
-import subprocess
-
-# Get the token map from the lexer.  This is required.
 from Avance1.lexer import tokens, get_git_user
+# ------------------------------------------------------------
+# Integrantes:
+#   Derian Baque Choez (fernan0502)
+#   Sebastian Holguin (Sebhvarg)
+#   Carlos Ronquillo (carrbrus)
+# ------------------------------------------------------------
 
-mensajes = []
+mensajes = [] #Guarda los errores
+
 # ------------------------------------------------------------   
 def p_programa(p):
     '''programa : instrucciones
@@ -20,30 +28,25 @@ def p_instrucciones(p):
     '''instrucciones : asignacion
                  | imprimir
                  | funcion
-             
+                 | estructura_control
                  ''' 
-def p_funcion(p):
-    'funcion : FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ programa LLAVE_DER'
-
-def p_funcion_parametros(p):
-    'funcion : FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER LLAVE_IZQ programa LLAVE_DER'
-
-def p_parametros(p):
-    '''parametros : IDENTIFICADOR
-                  | IDENTIFICADOR COMA parametros
-    '''
-      
+# ------------------------------------------------------------
+# Reglas de la gramática (Derian + Sebastian)
 def p_asignacion(p):
-    'asignacion : VARIABLE IDENTIFICADOR IGUAL valor PUNTOCOMA'
+    '''asignacion : VARIABLE IDENTIFICADOR IGUAL valor PUNTOCOMA
+                    | IDENTIFICADOR IGUAL valor PUNTOCOMA
+                    
+    '''
     
 def  p_valor(p):
     '''valor : CADENA
              | CARACTER
              | BOOLEANO
-             | VARIABLE 
+             | IDENTIFICADOR
+             | asignacion 
              | valor_numerico
              | operacion_aritmetica'''
-    
+
 
 def p_valor_numerico(p):
     '''valor_numerico : ENTERO
@@ -51,9 +54,12 @@ def p_valor_numerico(p):
     
 
 def p_valor_operacionAritmetica(p):
-    '''operacion_aritmetica : valor_numerico operador_aritmetico valor_numerico
+    '''operacion_aritmetica : valor operador_aritmetico valor
     | repite_operacion_aritmetica 
+    
+    
     '''
+    
    
     
 def p_operador_aritmetico(p):
@@ -66,7 +72,18 @@ def p_operador_aritmetico(p):
 def p_repite_operacionAritmetica(p):
     '''repite_operacion_aritmetica : operacion_aritmetica 
                                     | operacion_aritmetica operador_aritmetico valor_numerico'''
+def p_expresion_booleana(p):
+    '''expresion_booleana : valor operador_relacional valor    
+    '''
 
+def p_operador_relacional(p):
+    '''operador_relacional : MAYOR
+                           | MENOR
+                           | MAYOR_IGUAL
+                           | MENOR_IGUAL
+                           | IGUALDOBLE
+                           | DIFERENTE'''
+# ------------------ Funciones ------------------
 def p_imprimir(p):
     '''imprimir : IMPRIMIR PAREN_IZQ repite_valores PAREN_DER PUNTOCOMA
     | IMPRIMIRLN PAREN_IZQ repite_valores PAREN_DER PUNTOCOMA
@@ -76,8 +93,45 @@ def p_imprimir(p):
 def p_repite_valores(p):
     '''repite_valores : valor
                       | valor COMA repite_valores'''
-                      
+def p_funcion(p):
+    'funcion : FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ programa LLAVE_DER'
 
+def p_funcion_parametros(p):
+    'funcion : FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER LLAVE_IZQ programa LLAVE_DER'
+
+def p_parametros(p):
+    '''parametros : IDENTIFICADOR
+                  | IDENTIFICADOR COMA parametros
+    '''
+# ------- Estructuras de control ----------------------
+def p_estructura_control(p):
+    '''estructura_control : condicional_if
+                         | ciclo_while
+                         | ciclo_for
+    '''
+
+def p_condicional_if(p):
+    '''condicional_if : SI PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER
+                        | SI PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER SINO LLAVE_IZQ programa LLAVE_DER
+                        | SI PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER condicional_elif
+    '''
+def p_condicional_elif(p):
+    '''condicional_elif : SINO SI PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER
+                        | SINO SI PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER condicional_elif
+                        | SINO SI PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER SINO LLAVE_IZQ programa LLAVE_DER
+    '''
+def p_ciclo_while(p):
+    'ciclo_while : MIENTRAS PAREN_IZQ expresion_booleana PAREN_DER LLAVE_IZQ programa LLAVE_DER'
+def p_ciclo_for(p):
+    'ciclo_for : POR PAREN_IZQ asignacion expresion_booleana PUNTOCOMA asignacion_incremento PAREN_DER LLAVE_IZQ programa LLAVE_DER'
+def p_asignacion_incremento(p):
+    '''asignacion_incremento : IDENTIFICADOR MAS_IGUAL ENTERO
+                                | IDENTIFICADOR MENOS_IGUAL ENTERO
+                                | IDENTIFICADOR SUMA SUMA
+                                | IDENTIFICADOR RESTA RESTA
+                
+    '''
+    
 # Error rule for syntax errors
 def p_error(p):
     print("Error sintáctico en la linea %d" % p.lineno if p else "Error sintáctico al final del archivo")

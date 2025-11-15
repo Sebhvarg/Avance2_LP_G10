@@ -8,15 +8,7 @@ import ply.yacc as yacc
 from Avance1.lexer import get_git_user, tokens
 import datetime
 import os
-import subprocess
 import sys
-
-# Guarda el último error sintáctico reportado por p_error
-last_syntax_error = None
-# Lista para acumular todos los errores sintácticos encontrados durante el parseo
-syntax_errors = []
-# Ruta del archivo de log donde se irán escribiendo los errores a medida que se detectan
-log_file_path = None
 
 # ------------------------------------------------------------
 # Integrantes:
@@ -24,11 +16,6 @@ log_file_path = None
 #   Sebastian Holguin (Sebhvarg)
 #   Carlos Ronquillo (carrbrus)
 # ------------------------------------------------------------
-
-# ------------------------------------------------------------
-# Símbolo inicial
-# ------------------------------------------------------------
-start = 'programa'
 
 def p_programa(p):
     '''programa : funcion
