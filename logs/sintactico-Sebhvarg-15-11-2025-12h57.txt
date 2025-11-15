@@ -1,0 +1,3 @@
+Inicio análisis sintáctico del archivo: ./test/algoritmo2.rs
+Error sintáctico en la linea 18
+Error sintáctico en la linea 22

@@ -1,0 +1,48 @@
+Inicio análisis sintáctico del archivo: ./test/errores_sintacticos.rs
+Error sintáctico en la línea 8: palabra reservada 'let' en posición incorrecta. Revise la sintaxis de declaración
+Error sintáctico en la línea 9: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 19: identificador 'x' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 22: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 28: token inesperado 'println!' de tipo IMPRIMIRLN
+Error sintáctico en la línea 28: punto y coma inesperado ';'
+Error sintáctico en la línea 33: token inesperado 'println!' de tipo IMPRIMIRLN
+Error sintáctico en la línea 33: punto y coma inesperado ';'
+Error sintáctico en la línea 38: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 42: operador aritmético '*' inesperado. Revise la expresión
+Error sintáctico en la línea 47: valor entero '10' inesperado. Revise la expresión o asignación
+Error sintáctico en la línea 52: punto y coma inesperado ';'
+Error sintáctico en la línea 57: operador de asignación '=' inesperado. Posible falta de identificador o valor
+Error sintáctico en la línea 63: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 67: cadena '"mensaje"' inesperada. Revise el contexto de uso
+Error sintáctico en la línea 72: cadena '"valor2"' inesperada. Revise el contexto de uso
+Error sintáctico en la línea 78: identificador 'x' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 81: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 85: identificador 'i' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 85: paréntesis de cierre ')' inesperado. Posible paréntesis de apertura faltante
+Error sintáctico en la línea 88: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 96: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 105: tipo de dato 'i32' inesperado. Revise la declaración de variable o función
+Error sintáctico en la línea 110: valor entero '5' inesperado. Revise la expresión o asignación
+Error sintáctico en la línea 115: paréntesis de cierre ')' inesperado. Posible paréntesis de apertura faltante
+Error sintáctico en la línea 121: valor entero '0' inesperado. Revise la expresión o asignación
+Error sintáctico en la línea 126: punto y coma inesperado ';'
+Error sintáctico en la línea 136: tipo de dato 'i32' inesperado. Revise la declaración de variable o función
+Error sintáctico en la línea 146: identificador 'y' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 153: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 164: identificador 'y' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 169: coma ',' inesperada. Revise la lista de parámetros o valores
+Error sintáctico en la línea 176: operador relacional '>' inesperado. Revise la expresión booleana
+Error sintáctico en la línea 179: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 185: identificador 'a' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 192: identificador 'x' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 197: paréntesis de cierre ')' inesperado. Posible paréntesis de apertura faltante
+Error sintáctico en la línea 200: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 204: punto y coma inesperado ';'
+Error sintáctico en la línea 209: dos puntos ':' inesperados. Revise la sintaxis de declaración de tipo
+Error sintáctico en la línea 216: identificador 'x' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 216: punto y coma inesperado ';'
+Error sintáctico en la línea 221: identificador 'i' inesperado. Puede faltar un operador o declaración
+Error sintáctico en la línea 221: llave de apertura '{' inesperada. Revise la sintaxis de la declaración anterior
+Error sintáctico en la línea 223: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
+Error sintáctico en la línea 227: llave de apertura '{' inesperada. Revise la sintaxis de la declaración anterior
+Error sintáctico en la línea 229: llave de cierre '}' inesperada. Posible llave de apertura faltante o estructura mal formada
