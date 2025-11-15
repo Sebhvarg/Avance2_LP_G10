@@ -31,10 +31,22 @@ def p_instrucciones(p):
                  | estructura_control
                  | bloque
                  | llamada_funcion
+                 | expresion_sin_puntocoma
+                 | clase
                  ''' 
 #sombrado
 def p_bloque(p):
     '''bloque : LLAVE_IZQ programa LLAVE_DER
+    '''
+
+def p_bloque_con_retorno(p):
+    '''bloque_con_retorno : LLAVE_IZQ programa LLAVE_DER
+    '''
+
+def p_expresion_sin_puntocoma(p):
+    '''expresion_sin_puntocoma : operacion_aritmetica
+                               | valor_numerico
+                               | IDENTIFICADOR
     '''
     
 # ------------------------------------------------------------
@@ -61,7 +73,8 @@ def  p_valor(p):
              | operacion_aritmetica
              | tupla
              | matriz
-             | llamada_funcion_sin_puntocoma'''
+             | llamada_funcion_sin_puntocoma
+             | bloque_con_retorno'''
 
 def p_valor_booleano(p):
     '''valor : VERDAD
@@ -89,6 +102,7 @@ def p_tipo_dato(p):
                  | CARACTER_TIPO
                  | CADENA_TIPO
                  | UTIPO
+                 | IDENTIFICADOR
                  
     '''
 
@@ -131,10 +145,14 @@ def p_repite_valores(p):
     '''repite_valores : valor
                       | valor COMA repite_valores'''
 def p_funcion(p):
-    'funcion : FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ programa LLAVE_DER'
+    '''funcion : FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ programa LLAVE_DER
+               | FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER FLECHA tipo_dato LLAVE_IZQ programa LLAVE_DER
+    '''
 
 def p_funcion_parametros(p):
-    'funcion : FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER LLAVE_IZQ programa LLAVE_DER'
+    '''funcion : FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER LLAVE_IZQ programa LLAVE_DER
+               | FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER FLECHA tipo_dato LLAVE_IZQ programa LLAVE_DER
+    '''
 
 def p_parametros(p):
     '''parametros : IDENTIFICADOR
@@ -152,11 +170,15 @@ def p_llamada_funcion_sin_puntocoma(p):
     '''llamada_funcion_sin_puntocoma : IDENTIFICADOR PAREN_IZQ PAREN_DER
                                      | IDENTIFICADOR PAREN_IZQ repite_valores PAREN_DER
     '''
+def p_retorno_funcion(p):
+    '''instrucciones : RETORNO valor PUNTOCOMA
+    '''
 # -------- Estructuras de datos ----------------------
 
 def p_estructura_datos(p):
     '''estructura_datos : tupla
                         | matriz
+                        | vector
     '''
 def p_tupla(p):
     '''tupla : PAREN_IZQ repite_valores PAREN_DER
@@ -185,6 +207,73 @@ def p_matriz_asignacion(p):
 def p_matriz_acceso(p):
     '''valor : IDENTIFICADOR CORCHETE_IZQ ENTERO CORCHETE_DER
     '''
+def p_matriz_acceso_doble(p):
+    '''valor : IDENTIFICADOR CORCHETE_IZQ ENTERO CORCHETE_DER CORCHETE_IZQ ENTERO CORCHETE_DER
+    '''
+def p_matriz_acceso_triple(p):
+    '''valor : IDENTIFICADOR CORCHETE_IZQ ENTERO CORCHETE_DER CORCHETE_IZQ ENTERO CORCHETE_DER CORCHETE_IZQ ENTERO CORCHETE_DER
+    '''
+def p_clase(p):
+    '''clase : ESTRUCTURA IDENTIFICADOR LLAVE_IZQ atributos_clase LLAVE_DER
+    '''
+def p_clase_con_metodos(p):
+    '''clase : ESTRUCTURA IDENTIFICADOR LLAVE_IZQ atributos_clase metodo_clase LLAVE_DER PUNTOCOMA
+    '''
+def p_metodo_clase(p):
+    '''metodo_clase : FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER LLAVE_IZQ programa LLAVE_DER
+                   | FUNCION IDENTIFICADOR PAREN_IZQ PAREN_DER FLECHA tipo_dato LLAVE_IZQ programa LLAVE_DER
+                   | FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER LLAVE_IZQ programa LLAVE_DER
+                   | FUNCION IDENTIFICADOR PAREN_IZQ parametros PAREN_DER FLECHA tipo_dato LLAVE_IZQ programa LLAVE_DER
+    '''
+def p_atributos_clase(p):
+    '''atributos_clase : IDENTIFICADOR DOSPUNTOS tipo_dato COMA
+                      | MUTABLE IDENTIFICADOR DOSPUNTOS tipo_dato COMA
+                      | atributos_clase IDENTIFICADOR DOSPUNTOS tipo_dato COMA
+                      | atributos_clase MUTABLE IDENTIFICADOR DOSPUNTOS tipo_dato COMA
+    '''
+def p_instanciar_clase(p):
+    '''valor : IDENTIFICADOR DOSPUNTOS DOSPUNTOS NUEVO PAREN_IZQ PAREN_DER
+    '''
+def p_eliminar_clase(p):
+    '''instrucciones : ELIMINAR IDENTIFICADOR PUNTOCOMA
+    '''
+def p_acceso_atributo_clase(p):
+    '''valor : IDENTIFICADOR PUNTO IDENTIFICADOR
+    '''
+def p_asignacion_atributo_clase(p):
+    '''asignacion : IDENTIFICADOR PUNTO IDENTIFICADOR IGUAL valor PUNTOCOMA
+    '''
+def p_llamada_metodo_clase(p):
+    '''valor : IDENTIFICADOR PUNTO IDENTIFICADOR PAREN_IZQ PAREN_DER
+             | IDENTIFICADOR PUNTO IDENTIFICADOR PAREN_IZQ repite_valores PAREN_DER
+    '''
+def p_asignacion_metodo_clase(p):
+    '''asignacion : IDENTIFICADOR PUNTO IDENTIFICADOR PAREN_IZQ PAREN_DER PUNTOCOMA
+                  | IDENTIFICADOR PUNTO IDENTIFICADOR PAREN_IZQ repite_valores PAREN_DER PUNTOCOMA
+    '''
+def p_vector(p):
+    '''vector : VECTOR_MACRO CORCHETE_IZQ repite_valores CORCHETE_DER 
+                | vectorvacio
+                
+    '''
+def p_vector_vacio(p):
+    '''vectorvacio : VECTOR MENOR tipo_dato MAYOR IGUAL VECTOR DOSPUNTOS DOSPUNTOS NUEVO PAREN_IZQ PAREN_DER 
+    '''
+def p_asignacion_vector_vacio(p):
+    '''asignacion : VARIABLE IDENTIFICADOR DOSPUNTOS vectorvacio PUNTOCOMA
+    '''
+    
+    
+def p_vector_valor_repetido(p):
+    '''vector : VECTOR_MACRO CORCHETE_IZQ ENTERO PUNTOCOMA valor CORCHETE_DER 
+    '''
+
+def p_asignacion_vector(p):
+    '''asignacion : VARIABLE IDENTIFICADOR IGUAL vector PUNTOCOMA
+    '''
+    
+# ------------------------------------------------------------
+
 # ------- Estructuras de control ----------------------
 def p_estructura_control(p):
     '''estructura_control : condicional_if
@@ -218,9 +307,89 @@ def p_asignacion_incremento(p):
     
 # Error rule for syntax errors
 def p_error(p):
-    print("Error sintáctico en la linea %d" % p.lineno if p else "Error sintáctico al final del archivo")
-    print(p);
-    mensaje_error = f"Error sintáctico en la linea {p.lineno}" if p else "Error sintáctico al final del archivo"
+    if not p:
+        mensaje_error = "Error sintáctico: fin de archivo inesperado. Puede faltar cerrar un bloque o una declaración"
+        print(mensaje_error)
+        mensajes.append(mensaje_error)
+        return
+    
+    # Obtener información del token
+    token_value = p.value
+    token_type = p.type
+    lineno = p.lineno
+    
+    # Generar mensajes de error específicos según el tipo de token
+    mensaje_error = f"Error sintáctico en la línea {lineno}: "
+    
+    # Errores comunes de puntuación
+    if token_type == 'PUNTOCOMA':
+        mensaje_error += f"punto y coma inesperado '{token_value}'"
+    elif token_type == 'LLAVE_DER':
+        mensaje_error += f"llave de cierre '}}' inesperada. Posible llave de apertura faltante o estructura mal formada"
+    elif token_type == 'LLAVE_IZQ':
+        mensaje_error += f"llave de apertura '{{' inesperada. Revise la sintaxis de la declaración anterior"
+    elif token_type == 'PAREN_DER':
+        mensaje_error += f"paréntesis de cierre ')' inesperado. Posible paréntesis de apertura faltante"
+    elif token_type == 'PAREN_IZQ':
+        mensaje_error += f"paréntesis de apertura '(' inesperado. Revise la sintaxis"
+    elif token_type == 'CORCHETE_DER':
+        mensaje_error += f"corchete de cierre ']' inesperado. Posible corchete de apertura faltante"
+    elif token_type == 'CORCHETE_IZQ':
+        mensaje_error += f"corchete de apertura '[' inesperado. Revise la sintaxis del array o vector"
+    
+    # Errores de operadores
+    elif token_type in ['SUMA', 'RESTA', 'MULT', 'DIV', 'MODULO']:
+        mensaje_error += f"operador aritmético '{token_value}' inesperado. Revise la expresión"
+    elif token_type in ['IGUAL', 'MAS_IGUAL', 'MENOS_IGUAL']:
+        mensaje_error += f"operador de asignación '{token_value}' inesperado. Posible falta de identificador o valor"
+    elif token_type in ['MAYOR', 'MENOR', 'MAYOR_IGUAL', 'MENOR_IGUAL', 'IGUALDOBLE', 'DIFERENTE']:
+        mensaje_error += f"operador relacional '{token_value}' inesperado. Revise la expresión booleana"
+    
+    # Errores de palabras reservadas
+    elif token_type in ['VARIABLE', 'MUTABLE', 'CONSTANTE']:
+        mensaje_error += f"palabra reservada '{token_value}' en posición incorrecta. Revise la sintaxis de declaración"
+    elif token_type == 'FUNCION':
+        mensaje_error += f"palabra reservada 'fn' inesperada. Revise la sintaxis de la función"
+    elif token_type in ['SI', 'SINO', 'MIENTRAS', 'POR']:
+        mensaje_error += f"palabra reservada '{token_value}' en posición incorrecta. Revise la estructura de control"
+    elif token_type == 'RETORNO':
+        mensaje_error += f"palabra reservada 'return' inesperada. Solo puede usarse dentro de funciones"
+    elif token_type == 'ESTRUCTURA':
+        mensaje_error += f"palabra reservada 'struct' inesperada. Revise la sintaxis de la clase"
+    
+    # Errores de identificadores y valores
+    elif token_type == 'IDENTIFICADOR':
+        mensaje_error += f"identificador '{token_value}' inesperado. Puede faltar un operador o declaración"
+    elif token_type == 'ENTERO':
+        mensaje_error += f"valor entero '{token_value}' inesperado. Revise la expresión o asignación"
+    elif token_type == 'FLOTANTE':
+        mensaje_error += f"valor flotante '{token_value}' inesperado. Revise la expresión o asignación"
+    elif token_type == 'CADENA':
+        mensaje_error += f"cadena '{token_value}' inesperada. Revise el contexto de uso"
+    elif token_type == 'CARACTER':
+        mensaje_error += f"carácter '{token_value}' inesperado. Revise el contexto de uso"
+    
+    # Errores de tipos de datos
+    elif token_type in ['I8', 'I16', 'I32', 'I64', 'I128', 'U8', 'U16', 'U32', 'U64', 'U128', 'F32', 'F64', 
+                        'BOOLEANO_TIPO', 'CARACTER_TIPO', 'CADENA_TIPO', 'ITIPO', 'UTIPO']:
+        mensaje_error += f"tipo de dato '{token_value}' inesperado. Revise la declaración de variable o función"
+    
+    # Otros símbolos
+    elif token_type == 'COMA':
+        mensaje_error += f"coma ',' inesperada. Revise la lista de parámetros o valores"
+    elif token_type == 'DOSPUNTOS':
+        mensaje_error += f"dos puntos ':' inesperados. Revise la sintaxis de declaración de tipo"
+    elif token_type == 'PUNTO':
+        mensaje_error += f"punto '.' inesperado. Revise el acceso a atributos o métodos"
+    elif token_type == 'FLECHA':
+        mensaje_error += f"flecha '->' inesperada. Revise la sintaxis de retorno de función"
+    
+    # Error genérico
+    else:
+        mensaje_error += f"token inesperado '{token_value}' de tipo {token_type}"
+    
+    print(mensaje_error)
+    print(f"  Token completo: {p}")
     mensajes.append(mensaje_error)
         
 # ------------------------------------------------------------

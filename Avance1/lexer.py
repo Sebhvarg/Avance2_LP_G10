@@ -66,7 +66,10 @@ reservadas = {
     'fn': 'FUNCION', 'return': 'RETORNO', 'let': 'VARIABLE',
     'const': 'CONSTANTE', 'true': 'VERDAD', 'false': 'FALSO',
     'break': 'QUIEBRE', 'print!': 'IMPRIMIR', 'input': 'ENTRADA',
-    'continue': 'CONTINUAR', 'println!': 'IMPRIMIRLN',
+    'continue': 'CONTINUAR', 'println!': 'IMPRIMIRLN', 'new': 'NUEVO',
+    'delete': 'ELIMINAR', 'switch': 'SWITCH', 'case': 'CASO',
+    'default': 'DEFECTO', 'Vec': 'VECTOR', 'vec!': 'VECTOR_MACRO',
+    
 
      # ---------------- Fin Fernando, Sebastian -------------------
     
