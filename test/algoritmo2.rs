@@ -1,29 +1,22 @@
 fn main() {
-    // Ingreso de datos por teclado
-    input("Ingrese su nombre:");
+    let x = 5;
 
-    // Declaración y asignación
-    let x = 10;
-    let y = 5;
-    let z = 3;
+    let x = x + 1;
 
-    // Estructura de datos (lista)
-    let numeros = [1, 2, 3, 4, 5];
-
-    // Expresión aritmética
-    let suma = x + y * z;
-
-    // Condicional con conectores lógicos
-    if (x > y && z < 5 || y == 5) {
-        print("Condición verdadera");
-    } else {
-        print("Condición falsa");
+    {
+        let x = x * 2;
+        println!("The value of x in the inner scope is: {x}");
     }
+    let y: i8 = 10;
 
-    // Expresión booleana adicional
-    let e = x && y;
+    let i: char = 'A';
 
-    // Imprimir resultado final
-    print(x);
-    x = y && z;
+    let f: f32 = 2.5;
+    let tupla = (123, "SI", 3.14);
+    println!("{}", tupla.1); // Acceder al segundo elemento de la tupla
+
+    let months = ["January", "Februar", "August", "September", "October", "November", "December"];
+
+
+    println!("The value of x is: {x}");
 }
